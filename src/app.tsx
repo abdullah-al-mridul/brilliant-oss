@@ -379,7 +379,7 @@ export function App() {
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="px-6 py-2.5 text-[15px] font-bold text-gray-700 hover:text-gray-900 transition-all border border-gray-300 rounded-full hover:bg-gray-50 hover:shadow-sm">
+              <button className="px-6 py-2 text-[15px] font-bold text-gray-700 bg-white border border-gray-200 shadow-[0_3px_0_0_#E5E7EB] hover:shadow-[0_1.5px_0_0_#E5E7EB] hover:translate-y-[1.5px] active:shadow-none active:translate-y-[3px] rounded-full transition-all cursor-pointer">
                 Sign in
               </button>
             </div>
@@ -521,10 +521,10 @@ export function App() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-5 justify-center w-full max-w-[650px] z-10 relative">
-                <button className="flex-1 py-[18px] bg-[#22c55e] hover:bg-[#1fb355] text-white text-[17px] font-bold rounded-full transition-all shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] hover:shadow-[0_6px_20px_rgba(34,197,94,0.23)] hover:-translate-y-0.5 active:translate-y-0">
+                <button className="flex-1 py-[16px] px-8 bg-[#22C55E] text-white text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#16A34A] hover:shadow-[0_2px_0_0_#16A34A] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
                   I'm a learner
                 </button>
-                <button className="flex-1 py-[18px] bg-white border-2 border-gray-200 text-black text-[17px] font-bold rounded-full transition-all hover:border-gray-300 hover:bg-gray-50 hover:-translate-y-0.5 active:translate-y-0 shadow-sm">
+                <button className="flex-1 py-[16px] px-8 bg-white border-2 border-gray-100 text-[#1c1d1f] text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
                   I'm a parent or teacher
                 </button>
               </div>
@@ -802,7 +802,7 @@ export function App() {
               <button
                 key={tab.key}
                 onClick={() => setActiveCategory(tab.key as any)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${
+                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
                   activeCategory === tab.key
                     ? tab.activeClass
                     : "bg-white/10 hover:bg-white/20 hover:text-white text-gray-300"
@@ -1079,7 +1079,7 @@ export function App() {
               </span>{" "}
               and open-source advocates.
             </p>
-            <button className="px-10 py-3.5 bg-white border border-gray-200 text-gray-900 rounded-full font-bold hover:bg-gray-50 hover:border-gray-300 hover:scale-105 active:scale-95 transition-all shadow-sm">
+            <button className="px-10 py-3.5 bg-white border-2 border-gray-100 text-[#1c1d1f] rounded-full font-bold transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
               Join as a contributor
             </button>
           </div>
@@ -1099,11 +1099,11 @@ export function App() {
           <p className="text-xl text-gray-400 mb-10 font-serif">
             Join over 10 million people learning interactively.
           </p>
-          <button className="px-10 py-4 bg-white text-black font-bold rounded-full mb-12 hover:bg-gray-200 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-white/10">
+          <button className="px-12 py-4 bg-white text-black font-bold rounded-full mb-12 transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
             Get started for free
           </button>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-40">
-            <button className="bg-[#1f1f1f] px-6 py-2 rounded-xl flex items-center gap-3 hover:bg-[#2a2a2a] active:scale-95 transition-all border border-white/5 hover:border-white/10 group">
+            <button className="bg-[#1f1f1f] px-6 py-2 rounded-xl flex items-center gap-3 hover:bg-[#2a2a2a] active:scale-95 transition-all border border-white/5 hover:border-white/10 group cursor-pointer">
               <span className="text-gray-400 group-hover:text-white transition-colors">
                 <svg
                   viewBox="0 0 24 24"
@@ -1121,7 +1121,7 @@ export function App() {
                 <div className="text-sm font-bold">App Store</div>
               </div>
             </button>
-            <button className="bg-[#1f1f1f] px-6 py-2 rounded-xl flex items-center gap-3 hover:bg-[#2a2a2a] active:scale-95 transition-all border border-white/5 hover:border-white/10 group">
+            <button className="bg-[#1f1f1f] px-6 py-2 rounded-xl flex items-center gap-3 hover:bg-[#2a2a2a] active:scale-95 transition-all border border-white/5 hover:border-white/10 group cursor-pointer">
               <span className="text-gray-400 group-hover:text-white transition-colors">
                 <Play size={20} fill="currentColor" />
               </span>
