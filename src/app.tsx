@@ -933,45 +933,77 @@ export function App() {
       </section>
       {/* END: More effective, more fun */}
 
-      {/* BEGIN: Expert Section */}
+      {/* BEGIN: Contributor Section */}
       <section
-        className="py-24 border-t border-gray-100"
-        data-purpose="expert-logos"
+        className="py-32 border-t border-gray-100 bg-white"
+        data-purpose="contributor-logos"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 font-serif">
-            Designed by experts
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16 font-serif">
+            Designed by contributors
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-            <span className="font-bold text-xl tracking-tight cursor-default hover:text-blue-600 transition-colors">
-              Stanford
-            </span>
-            <span className="font-bold text-xl tracking-tight cursor-default hover:text-red-700 transition-colors">
-              MIT
-            </span>
-            <span className="font-bold text-xl tracking-tight cursor-default hover:text-blue-500 transition-colors">
-              Google
-            </span>
-            <span className="font-bold text-xl tracking-tight cursor-default hover:text-orange-500 transition-colors">
-              Caltech
-            </span>
-            <span className="font-bold text-xl tracking-tight cursor-default hover:text-red-800 transition-colors">
-              HARVARD
-            </span>
-            <span className="font-bold text-xl tracking-tight cursor-default hover:text-blue-600 transition-colors">
-              Microsoft
-            </span>
+
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 mb-16">
+            {[
+              {
+                name: "Linux",
+                color: "hover:text-orange-500 hover:border-orange-200",
+                icon: <CheckCircle2 size={16} />,
+              },
+              {
+                name: "Apache",
+                color: "hover:text-red-600 hover:border-red-200",
+                icon: <CheckCircle2 size={16} />,
+              },
+              {
+                name: "Mozilla",
+                color: "hover:text-blue-500 hover:border-blue-200",
+                icon: <CheckCircle2 size={16} />,
+              },
+              {
+                name: "Python",
+                color: "hover:text-yellow-600 hover:border-yellow-200",
+                icon: <CheckCircle2 size={16} />,
+              },
+              {
+                name: "Node.js",
+                color: "hover:text-green-600 hover:border-green-200",
+                icon: <CheckCircle2 size={16} />,
+              },
+              {
+                name: "Rust",
+                color: "hover:text-red-500 hover:border-red-200",
+                icon: <CheckCircle2 size={16} />,
+              },
+            ].map((foundation) => (
+              <div
+                key={foundation.name}
+                className={`flex items-center gap-2.5 px-6 py-3 bg-gray-50/50 border border-gray-100 rounded-full transition-all duration-300 cursor-default grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:bg-white hover:shadow-md ${foundation.color}`}
+              >
+                <span className="text-current">{foundation.icon}</span>
+                <span className="font-bold text-lg tracking-tight">
+                  {foundation.name}
+                </span>
+              </div>
+            ))}
           </div>
-          <p className="text-gray-500 mb-10 max-w-2xl mx-auto font-medium">
-            All of our courses are crafted by award-winning teachers and
-            professionals from top institutions.
-          </p>
-          <button className="px-8 py-3 border border-gray-300 rounded-xl font-bold text-gray-800 hover:bg-gray-50 hover:border-gray-400 active:scale-95 transition-all">
-            Learn more
-          </button>
+
+          <div className="max-w-2xl mx-auto">
+            <p className="text-xl text-gray-500 mb-10 leading-relaxed">
+              Our interactive curriculums are built and maintained by a global
+              network of over{" "}
+              <span className="text-gray-900 font-bold">
+                500 expert contributors
+              </span>{" "}
+              and open-source advocates.
+            </p>
+            <button className="px-10 py-3.5 bg-white border border-gray-200 text-gray-900 rounded-full font-bold hover:bg-gray-50 hover:border-gray-300 hover:scale-105 active:scale-95 transition-all shadow-sm">
+              Join as a contributor
+            </button>
+          </div>
         </div>
       </section>
-      {/* END: Expert Section */}
+      {/* END: Contributor Section */}
 
       {/* BEGIN: Final CTA */}
       <section
