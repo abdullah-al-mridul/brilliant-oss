@@ -854,7 +854,7 @@ export function App() {
           <button className="px-10 py-4 bg-white text-black font-bold rounded-full mb-12 hover:bg-gray-200 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-white/10">
             Get started for free
           </button>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-20">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-40">
             <button className="bg-[#1f1f1f] px-6 py-2 rounded-xl flex items-center gap-3 hover:bg-[#2a2a2a] active:scale-95 transition-all border border-white/5 hover:border-white/10 group">
               <span className="text-gray-400 group-hover:text-white transition-colors">
                 <svg
@@ -885,15 +885,17 @@ export function App() {
               </div>
             </button>
           </div>
-          <div className="flex justify-center items-end gap-1 px-4 group">
-            <div className="w-10 md:w-14 h-28 bg-orange-400 rounded-t-full transition-transform duration-500 group-hover:-translate-y-4 shadow-xl"></div>
-            <div className="w-10 md:w-14 h-36 bg-purple-500 rounded-t-full transition-transform duration-500 delay-75 group-hover:-translate-y-8 shadow-xl"></div>
-            <div className="w-10 md:w-14 h-44 bg-green-500 rounded-t-full transition-transform duration-500 delay-100 group-hover:-translate-y-12 shadow-xl"></div>
-            <div className="w-10 md:w-14 h-40 bg-blue-500 rounded-t-full transition-transform duration-500 delay-150 group-hover:-translate-y-8 shadow-xl"></div>
-            <div className="w-10 md:w-14 h-32 bg-red-400 rounded-t-full transition-transform duration-500 delay-200 group-hover:-translate-y-4 shadow-xl"></div>
-          </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-black to-transparent pointer-events-none"></div>
+
+        {/* Decorative Bottom Bars */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end gap-1.5 z-0 group">
+          <div className="w-[38px] md:w-[48px] h-28 bg-[#ff8f00] rounded-t-full transition-transform duration-500 group-hover:-translate-y-4"></div>
+          <div className="w-[38px] md:w-[48px] h-36 bg-[#bc61ff] rounded-t-full transition-transform duration-500 delay-75 group-hover:-translate-y-8"></div>
+          <div className="w-[38px] md:w-[48px] h-44 bg-[#0bd353] rounded-t-full transition-transform duration-500 delay-100 group-hover:-translate-y-12"></div>
+          <div className="w-[38px] md:w-[48px] h-40 bg-[#348bf6] rounded-t-full transition-transform duration-500 delay-150 group-hover:-translate-y-8"></div>
+          <div className="w-[38px] md:w-[48px] h-32 bg-[#ff6868] rounded-t-full transition-transform duration-500 delay-200 group-hover:-translate-y-4"></div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-black to-transparent pointer-events-none z-10 opacity-60"></div>
       </section>
       {/* END: Final CTA */}
 
