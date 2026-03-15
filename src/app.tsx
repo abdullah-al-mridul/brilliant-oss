@@ -202,7 +202,7 @@ export function App() {
           <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80"></div>
           <div className="w-2.5 h-2.5 rounded-full bg-green-400/80"></div>
         </div>
-        <div className="flex-1 relative overflow-hidden flex items-center justify-center p-6">
+        <div className="flex-1 relative overflow-hidden flex items-center justify-center ">
           {content}
         </div>
       </div>
@@ -211,34 +211,70 @@ export function App() {
     switch (category) {
       case "ComputerScience":
         return windowWrapper(
-          <div className="w-full h-full flex items-center justify-center p-6">
-            <div className="w-full space-y-4">
-              <div className="flex justify-between items-center bg-blue-500/5 p-3 rounded-lg border border-blue-500/10">
-                <span className="text-[10px] font-mono text-blue-400">
-                  binary_search(arr, 42)
-                </span>
-                <span className="text-[10px] font-bold text-green-500 animate-pulse">
-                  Running
-                </span>
-              </div>
-              <div className="flex gap-2 justify-center">
-                {[...Array(8)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-8 h-10 rounded-md border flex items-center justify-center text-[10px] font-bold transition-all duration-500 ${
-                      i === 3
-                        ? "bg-blue-500 border-blue-400 text-white scale-110 shadow-lg shadow-blue-500/40"
-                        : "bg-white/5 border-white/10 text-gray-500"
-                    } animate-[cs-search_4s_infinite]`}
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  >
-                    {i * 10 + 12}
-                  </div>
-                ))}
-              </div>
-              <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500 w-1/2 animate-[cs-progress_4s_infinite]"></div>
-              </div>
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-[#0d1117]">
+            <svg viewBox="0 0 200 120" className="w-full max-w-[280px]">
+              {/* Connections */}
+              <line
+                x1="100"
+                y1="20"
+                x2="60"
+                y2="50"
+                stroke="#374151"
+                strokeWidth="1"
+              />
+              <line
+                x1="100"
+                y1="20"
+                x2="140"
+                y2="50"
+                stroke="#374151"
+                strokeWidth="1"
+              />
+              <line
+                x1="60"
+                y1="50"
+                x2="40"
+                y2="80"
+                stroke="#374151"
+                strokeWidth="1"
+              />
+              <line
+                x1="60"
+                y1="50"
+                x2="80"
+                y2="80"
+                stroke="#374151"
+                strokeWidth="1"
+              />
+              <line
+                x1="140"
+                y1="50"
+                x2="160"
+                y2="80"
+                stroke="#3b82f6"
+                strokeWidth="2"
+                className="animate-[draw-path_2s_infinite]"
+              />
+
+              {/* Nodes */}
+              <circle cx="100" cy="20" r="8" fill="#1f2937" stroke="#374151" />
+              <circle cx="60" cy="50" r="8" fill="#1f2937" stroke="#374151" />
+              <circle cx="140" cy="50" r="8" fill="#1e3a8a" stroke="#3b82f6" />
+              <circle cx="40" cy="80" r="8" fill="#1f2937" stroke="#374151" />
+              <circle cx="80" cy="80" r="8" fill="#1f2937" stroke="#374151" />
+              <circle
+                cx="160"
+                cy="80"
+                r="8"
+                fill="#1e3a8a"
+                stroke="#3b82f6"
+                className=""
+              />
+            </svg>
+            <div className="mt-4 text-center">
+              <p className="text-blue-400 font-mono text-[10px] uppercase tracking-widest">
+                Searching 42...
+              </p>
             </div>
           </div>,
           "border-gray-800 hover:border-blue-500/50",
@@ -246,43 +282,23 @@ export function App() {
         );
       case "Math":
         return windowWrapper(
-          <div className="w-full h-full flex flex-col items-center justify-center p-4">
-            <div className="relative w-full h-32 flex items-end justify-center gap-1">
-              {[...Array(20)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 bg-blue-500/20 rounded-t-sm transition-all duration-1000 animate-[math-integral_3s_infinite]"
-                  style={{
-                    height: `${Math.sin(i * 0.3) * 40 + 50}%`,
-                    animationDelay: `${i * 0.05}s`,
-                  }}
-                >
-                  <div className="w-full h-full bg-blue-500/40 animate-pulse"></div>
-                </div>
-              ))}
-              <svg
-                className="absolute inset-0 w-full h-full overflow-visible"
-                preserveAspectRatio="none"
-                viewBox="0 0 100 100"
-              >
-                <path
-                  d="M 0 50 Q 25 10, 50 50 T 100 50"
-                  fill="none"
-                  stroke="#3b82f6"
-                  strokeWidth="2"
-                  className="animate-[math-path_3s_infinite]"
-                />
-              </svg>
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-[#0d1117]">
+            <div className="relative w-40 h-40 flex items-center justify-center border border-gray-800 rounded-full">
+              {/* Unit Circle Axes */}
+              <div className="absolute w-full h-px bg-gray-800"></div>
+              <div className="absolute h-full w-px bg-gray-800"></div>
+
+              {/* Radius & Projection */}
+              <div className="absolute w-full h-full animate-[rotate-unit_5s_linear_infinite]">
+                <div className="absolute top-1/2 left-1/2 w-20 h-0.5 bg-blue-400 origin-left"></div>
+                <div className="absolute top-1/2 left-[calc(50%+80px)] -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+              </div>
+
+              {/* Static Unit Circle */}
+              <div className="absolute w-full h-full border border-blue-500/20 rounded-full"></div>
             </div>
-            <div className="mt-4 flex gap-4 text-[10px] font-mono text-gray-500">
-              <span className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div> Area:
-                0.84
-              </span>
-              <span className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping"></div>{" "}
-                Slope: 0.12
-              </span>
+            <div className="mt-4 text-[10px] font-mono text-blue-400/80 uppercase tracking-widest">
+              sin(θ) + cos(θ) = 1
             </div>
           </div>,
           "border-gray-800 hover:border-blue-500/50",
@@ -290,36 +306,26 @@ export function App() {
         );
       case "DataAnalysis":
         return windowWrapper(
-          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-[#0d1117] overflow-hidden">
-            <div className="relative w-full h-32 border-l border-b border-gray-800">
-              {/* Data Points */}
-              <div className="absolute inset-0 flex items-end justify-between px-4 pb-2">
-                {[40, 70, 45, 90, 60].map((h, i) => (
+          <div className="w-full h-full flex items-center justify-center p-6 bg-[#0d1117]">
+            <div className="relative w-full max-w-[200px] aspect-square grid grid-cols-10 grid-rows-10 gap-0.5 border border-gray-800 p-0.5">
+              {[...Array(100)].map((_, i) => {
+                const x = i % 10;
+                const y = Math.floor(i / 10);
+                const isTrend = Math.abs(y - (9 - x)) <= 1;
+                return (
                   <div
                     key={i}
-                    className="w-8 bg-orange-500/20 border border-orange-500/40 rounded-t-sm relative group/bar"
-                    style={{ height: `${h}%` }}
-                  >
-                    <div
-                      className="absolute inset-0 bg-orange-500 animate-[data-pulse_3s_infinite]"
-                      style={{ animationDelay: `${i * 0.2}s` }}
-                    ></div>
-                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-mono text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                      {h}%
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {/* Scanning Line */}
-              <div className="absolute inset-y-0 w-px bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.5)] animate-[data-scan_4s_linear_infinite]"></div>
-            </div>
-            <div className="w-full mt-4 flex justify-between px-2">
-              <div className="h-1.5 w-24 bg-white/5 rounded-full overflow-hidden">
-                <div className="h-full bg-orange-500 w-2/3"></div>
-              </div>
-              <span className="text-[9px] font-mono text-gray-500 uppercase">
-                Processing...
-              </span>
+                    className={`w-full h-full transition-colors duration-1000 ${
+                      isTrend
+                        ? "bg-orange-500/80 animate-[data-grid-fade_3s_infinite]"
+                        : "bg-orange-500/10"
+                    }`}
+                    style={{ animationDelay: `${(x + y) * 0.1}s` }}
+                  ></div>
+                );
+              })}
+              {/* Trend Line */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-0.5 bg-orange-200/30 -rotate-45 scale-x-125"></div>
             </div>
           </div>,
           "border-gray-800 hover:border-orange-500/50",
@@ -327,42 +333,53 @@ export function App() {
         );
       case "Science":
         return windowWrapper(
-          <div className="w-full h-full flex items-center justify-center p-6 bg-[#0d1117] overflow-hidden">
-            <div className="relative w-48 h-48 flex items-center justify-center">
-              {/* Orbital Rings */}
-              <div className="absolute w-full h-full border border-yellow-500/10 rounded-full"></div>
-              <div className="absolute w-3/4 h-3/4 border border-yellow-500/5 rounded-full rotate-45"></div>
-
-              {/* Pulsating Nucleus */}
-              <div className="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center border border-yellow-500/40 relative">
-                <div className="absolute inset-0 bg-yellow-500/40 rounded-full animate-ping"></div>
-                <Zap
-                  size={20}
-                  className="text-yellow-500 relative z-10"
-                  fill="currentColor"
+          <div className="w-full h-full flex items-center justify-center p-6 bg-[#0d1117]">
+            <div className="relative w-48 h-32 flex items-center justify-center overflow-hidden">
+              <svg
+                viewBox="0 0 120 80"
+                className="w-full h-full overflow-visible"
+              >
+                {/* Prism */}
+                <path
+                  d="M 60 10 L 40 70 L 80 70 Z"
+                  fill="none"
+                  stroke="#4b5563"
+                  strokeWidth="1"
                 />
-              </div>
 
-              {/* Electrons */}
-              <div className="absolute w-full h-full animate-[spin_8s_linear_infinite]">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-yellow-400 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.8)]"></div>
-              </div>
-              <div className="absolute w-3/4 h-3/4 animate-[spin_5s_linear_infinite_reverse]">
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-500 rounded-full"></div>
-              </div>
+                {/* Input Light */}
+                <line
+                  x1="0"
+                  y1="40"
+                  x2="53"
+                  y2="40"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.8"
+                  strokeDasharray="4 4"
+                  className="animate-[draw-axis_4s_linear_infinite]"
+                />
 
-              {/* Particle Field (Subtle) */}
-              {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-yellow-500/40 rounded-full animate-[science-particle_4s_infinite]"
-                  style={{
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
-                    animationDelay: `${i * 0.5}s`,
-                  }}
-                ></div>
-              ))}
+                {/* Refracted Spectrum */}
+                {[
+                  "#ef4444",
+                  "#f97316",
+                  "#eab308",
+                  "#22c55e",
+                  "#3b82f6",
+                  "#8b5cf6",
+                ].map((color, i) => (
+                  <path
+                    key={color}
+                    d={`M 67 ${40 + i * 0.5} L 120 ${30 + i * 10}`}
+                    stroke={color}
+                    strokeWidth="4"
+                    strokeOpacity="0.4"
+                    className="animate-[prism-refract_5s_linear_infinite] blur-[2px]"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  />
+                ))}
+              </svg>
             </div>
           </div>,
           "border-gray-800 hover:border-yellow-700/50",
