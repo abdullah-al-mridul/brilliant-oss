@@ -534,25 +534,44 @@ export function App() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="order-2 md:order-1 relative group cursor-pointer">
-              <div className="relative bg-white rounded-xl shadow-2xl p-8 border border-gray-100 float-anim transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-3xl">
-                <div className="flex flex-col gap-6">
-                  <div className="h-4 w-32 bg-gray-100 rounded"></div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="aspect-square bg-blue-50 rounded-xl flex items-center justify-center overflow-hidden relative group-hover:bg-blue-100 transition-colors">
-                      <div className="w-12 h-12 bg-blue-500 rounded-lg absolute group-hover:scale-110 transition-transform duration-300"></div>
+            <div className="order-2 md:order-1 relative group cursor-pointer h-[350px] flex items-center justify-center">
+              {/* Outer Flat "Window" */}
+              <div className="relative w-full max-w-[440px] bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-500 group-hover:border-blue-200">
+                <div className="h-8 bg-gray-50 border-b border-gray-100 flex items-center px-4 gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-200"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-200"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-200"></div>
+                </div>
+                <div className="p-8">
+                  <div className="flex gap-6 items-center">
+                    {/* Interactive Puzzle/Block Graphic */}
+                    <div className="relative w-48 h-48 bg-blue-50/50 rounded-2xl flex items-center justify-center overflow-hidden">
+                      {/* Main central block */}
+                      <div className="w-20 h-20 bg-blue-500 rounded-xl shadow-blue-500/20 shadow-lg z-10 transition-all duration-500 group-hover:scale-105"></div>
+                      {/* Decorative orbiting fragments that 'click' on hover */}
+                      <div className="absolute top-4 left-4 w-10 h-10 bg-blue-300 rounded-lg opacity-40 transition-all duration-700 group-hover:translate-x-6 group-hover:translate-y-6 group-hover:opacity-100 group-hover:bg-blue-400"></div>
+                      <div className="absolute bottom-4 right-4 w-12 h-12 bg-blue-200 rounded-lg opacity-40 transition-all duration-700 group-hover:-translate-x-8 group-hover:-translate-y-8 group-hover:opacity-80 group-hover:bg-blue-300"></div>
+                      <div className="absolute top-1/2 -right-2 w-8 h-8 bg-blue-100 rounded-lg opacity-20 transition-all duration-1000 group-hover:-translate-x-12 group-hover:opacity-60"></div>
                     </div>
-                    <div className="aspect-square bg-blue-50 rounded-xl grid grid-cols-2 p-3 gap-2 group-hover:bg-blue-100 transition-colors">
-                      <div className="bg-blue-200 rounded"></div>
-                      <div className="bg-blue-400 rounded"></div>
-                      <div className="bg-blue-300 rounded"></div>
-                      <div className="bg-blue-100 rounded"></div>
+                    {/* Flatter UI representation */}
+                    <div className="flex-1 space-y-4">
+                      <div className="h-2 w-full bg-blue-100/50 rounded-full overflow-hidden">
+                        <div className="h-full w-0 bg-blue-400 rounded-full transition-all duration-1500 group-hover:w-full"></div>
+                      </div>
+                      <div className="h-2 w-3/4 bg-gray-100 rounded-full"></div>
+                      <div className="h-2 w-5/6 bg-gray-100 rounded-full"></div>
+                      <div className="pt-4 flex gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-1000">
+                          <CheckCircle2 size={16} />
+                        </div>
+                        <div className="flex-1 h-8 bg-gray-50 rounded-lg border border-dashed border-gray-200"></div>
+                      </div>
                     </div>
                   </div>
-                  <div className="h-3 w-full bg-gray-50 rounded"></div>
                 </div>
               </div>
-              <div className="absolute -top-10 -left-10 w-48 h-48 bg-blue-100/50 rounded-full -z-10 group-hover:scale-110 transition-transform duration-500"></div>
+              {/* Background accent ring (Flatter) */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 border-dashed border-blue-100 rounded-full -z-10 group-hover:scale-110 transition-transform duration-1000 opacity-50"></div>
             </div>
             <div className="order-1 md:order-2">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-serif">
@@ -585,32 +604,44 @@ export function App() {
                 sets based on your progress, and adapts to your pace.
               </p>
             </div>
-            <div className="relative group cursor-pointer">
-              <div className="grid grid-cols-4 gap-6 p-8 opacity-30 transition-opacity duration-300 group-hover:opacity-50">
-                <div className="w-12 h-12 bg-purple-500 rounded-full"></div>
-                <div className="w-12 h-12 bg-purple-200 rounded-full"></div>
-                <div className="w-12 h-12 bg-purple-300 rounded-full"></div>
-                <div className="w-12 h-12 bg-purple-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-purple-100 rounded-full"></div>
-                <div className="w-12 h-12 bg-purple-400 rounded-full"></div>
-                <div className="w-12 h-12 bg-purple-500 rounded-full"></div>
-                <div className="w-12 h-12 bg-purple-200 rounded-full"></div>
+            <div className="relative group cursor-pointer flex items-center justify-center h-[350px]">
+              {/* Grid System Representation */}
+              <div className="grid grid-cols-6 gap-3 opacity-20 grayscale transition-all duration-700 group-hover:opacity-40 group-hover:grayscale-0">
+                {Array.from({ length: 24 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-10 h-10 border border-purple-100 rounded-lg bg-purple-50 flex items-center justify-center group-hover:border-purple-200"
+                  >
+                    <div className="w-2 h-2 rounded-full bg-purple-200 group-hover:bg-purple-300 transition-colors"></div>
+                  </div>
+                ))}
               </div>
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 shadow-2xl rounded-2xl border border-purple-50 w-64 transition-transform duration-300 group-hover:scale-105">
+              {/* Floating Profile/Next Topic Card (Flatter) */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 shadow-xl rounded-2xl border border-purple-50 w-72 transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-purple-100">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold shadow-inner">
-                    <CheckCircle2 size={24} />
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center text-white font-bold shadow-inner relative overflow-hidden">
+                    <CheckCircle2
+                      size={24}
+                      className="z-10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest">
-                      Next Topic
+                    <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-1">
+                      Personalized for you
                     </p>
-                    <p className="text-lg font-bold group-hover:text-purple-700 transition-colors">
+                    <p className="text-lg font-bold text-gray-900 group-hover:text-purple-700 transition-colors">
                       Linear Algebra
                     </p>
+                    <div className="mt-2 h-1.5 w-32 bg-purple-50 rounded-full overflow-hidden">
+                      <div className="h-full w-2/3 bg-purple-500 rounded-full transition-all duration-1000 group-hover:w-[90%]"></div>
+                    </div>
                   </div>
                 </div>
               </div>
+              {/* Floating Micro-bubbles (Premium detail) */}
+              <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-purple-200 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:-translate-y-8"></div>
+              <div className="absolute bottom-1/4 right-1/3 w-2 h-2 bg-purple-300 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:translate-y-6"></div>
             </div>
           </div>
         </div>
@@ -624,19 +655,23 @@ export function App() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative flex justify-center group cursor-pointer">
-              <div className="relative w-64 h-64">
-                <div className="absolute inset-0 bg-purple-200 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                <div className="relative z-10 w-full h-full flex items-center justify-center">
-                  <div className="w-48 h-48 bg-white rounded-3xl rotate-12 shadow-xl flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:rotate-0">
-                    <div className="w-32 h-32 bg-purple-600 rounded-2xl flex items-center justify-center shadow-inner -rotate-12 transition-transform duration-500 group-hover:rotate-0">
-                      <span className="text-white">
-                        <CheckCircle2 size={64} strokeWidth={2.5} />
-                      </span>
-                    </div>
+            <div className="relative group cursor-pointer h-[350px] flex items-center justify-center">
+              <div className="relative w-64 h-64 flex items-center justify-center">
+                {/* Flatter stack of 'lessons' */}
+                <div className="absolute w-48 h-48 bg-purple-50 rounded-2xl border border-purple-100 -rotate-3 transition-all duration-500 group-hover:-rotate-6 group-hover:-translate-x-2 group-hover:-translate-y-2"></div>
+                <div className="absolute w-48 h-48 bg-purple-100 rounded-2xl border border-purple-200 rotate-3 transition-all duration-500 group-hover:rotate-6 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+                <div className="relative z-10 w-48 h-48 bg-white rounded-2xl border border-purple-300 shadow-sm flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                  <div className="w-24 h-24 bg-purple-600 rounded-2xl flex items-center justify-center relative shadow-inner overflow-hidden">
+                    <CheckCircle2
+                      size={48}
+                      className="text-white z-10 transition-transform duration-700 group-hover:scale-110"
+                      strokeWidth={2.5}
+                    />
+                    <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   </div>
                 </div>
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-purple-100 rounded-full opacity-50 group-hover:scale-125 transition-transform duration-500"></div>
+                {/* Decorative dots (Premium detail) */}
+                <div className="absolute -top-4 -right-4 w-12 h-12 border border-purple-100 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-150 group-hover:-translate-y-4"></div>
               </div>
             </div>
             <div>
@@ -744,40 +779,56 @@ export function App() {
                 features, and daily encouragement.
               </p>
             </div>
-            <div className="flex flex-col items-center justify-center relative">
-              <div className="flex gap-4 items-end">
-                <div className="flex flex-col items-center group cursor-pointer">
-                  <div className="w-16 h-24 bg-yellow-100 rounded-t-full flex items-center justify-center border-b-4 border-yellow-200 transition-all duration-300 group-hover:h-28 group-hover:bg-yellow-200">
-                    <span className="text-yellow-400 group-hover:text-yellow-500 transition-colors opacity-40">
-                      <Zap size={24} fill="currentColor" />
-                    </span>
-                  </div>
-                  <span className="mt-4 font-bold text-gray-400">M</span>
-                </div>
-                <div className="flex flex-col items-center group cursor-pointer">
-                  <div className="w-16 h-32 bg-yellow-200 rounded-t-full flex items-center justify-center border-b-4 border-yellow-300 transition-all duration-300 group-hover:h-36 group-hover:bg-yellow-300">
-                    <span className="text-yellow-500 group-hover:text-yellow-600 transition-colors">
-                      <Zap size={28} fill="currentColor" />
-                    </span>
-                  </div>
-                  <span className="mt-4 font-bold text-gray-400">T</span>
-                </div>
-                <div className="flex flex-col items-center group cursor-pointer">
-                  <div className="w-20 h-40 bg-yellow-400 rounded-t-full flex items-center justify-center border-b-4 border-yellow-500 shadow-lg transition-all duration-300 group-hover:h-44 group-hover:bg-yellow-500 group-hover:shadow-xl">
-                    <span className="text-white drop-shadow-sm">
-                      <Zap size={36} fill="currentColor" />
-                    </span>
-                  </div>
-                  <span className="mt-4 font-bold text-gray-900">W</span>
-                </div>
-              </div>
-              <div className="absolute -top-16 right-0 w-24 h-24 bg-green-500 rounded-2xl rotate-12 flex items-center justify-center shadow-xl hover:rotate-6 hover:-translate-y-2 transition-all cursor-pointer">
-                <div className="w-12 h-10 bg-white rounded-md relative shadow-inner">
-                  <div className="absolute top-2 left-2 w-2 h-2 bg-black rounded-full animate-bounce"></div>
+            <div className="flex flex-col items-center justify-center relative h-[350px]">
+              {/* Flatter Streak Bar Chart */}
+              <div className="flex gap-6 items-end h-48 pb-4">
+                {[
+                  {
+                    label: "M",
+                    height: "h-20",
+                    color: "bg-yellow-50",
+                    active: false,
+                  },
+                  {
+                    label: "T",
+                    height: "h-32",
+                    color: "bg-yellow-100",
+                    active: false,
+                  },
+                  {
+                    label: "W",
+                    height: "h-40",
+                    color: "bg-yellow-500",
+                    active: true,
+                  },
+                ].map((bar, i) => (
                   <div
-                    className="absolute top-2 right-2 w-2 h-2 bg-black rounded-full animate-bounce"
-                    style={{ animationDelay: "0.1s" }}
-                  ></div>
+                    key={i}
+                    className="flex flex-col items-center group/bar cursor-pointer"
+                  >
+                    <div
+                      className={`w-14 ${bar.height} ${bar.active ? bar.color + " shadow-lg shadow-yellow-500/20" : bar.color + " border border-yellow-100"} rounded-2xl transition-all duration-500 group-hover/bar:-translate-y-2 flex items-center justify-center overflow-hidden`}
+                    >
+                      <Zap
+                        size={bar.active ? 28 : 20}
+                        className={`${bar.active ? "text-white" : "text-yellow-400 opacity-40"} transition-all duration-500 group-hover/bar:scale-110`}
+                        fill="currentColor"
+                      />
+                    </div>
+                    <span
+                      className={`mt-4 font-bold ${bar.active ? "text-gray-900" : "text-gray-400"} text-sm tracking-widest`}
+                    >
+                      {bar.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              {/* Flatter Mascot Bubble */}
+              <div className="absolute -top-4 -right-4 w-28 h-20 bg-green-500 rounded-2xl flex items-center justify-center shadow-md transition-all duration-500 group-hover:-translate-y-4 group-hover:rotate-3 cursor-pointer overflow-hidden border border-green-400">
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="w-10 h-8 bg-white rounded-lg flex items-center justify-center gap-1.5 shadow-sm">
+                  <div className="w-1.5 h-1.5 bg-black rounded-full animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 bg-black rounded-full animate-bounce delay-100"></div>
                 </div>
               </div>
             </div>
@@ -793,32 +844,45 @@ export function App() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative order-2 md:order-1 group cursor-pointer">
-              <div className="bg-white border border-gray-100 rounded-3xl shadow-2xl p-6 max-w-md mx-auto relative z-10 transition-transform duration-500 group-hover:-translate-y-2">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="h-2 w-1/2 bg-green-100 rounded-full overflow-hidden">
-                    <div className="h-full w-2/3 bg-green-500 group-hover:w-[80%] transition-all duration-1000 ease-out"></div>
+            <div className="relative order-2 md:order-1 group cursor-pointer h-[350px] flex items-center justify-center">
+              {/* Premium Flat Fun Graphic */}
+              <div className="bg-white border border-gray-100 rounded-3xl shadow-sm p-8 max-w-[400px] w-full relative z-10 transition-all duration-500 group-hover:border-green-100 group-hover:shadow-md">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex-1 max-w-[140px] h-2 bg-gray-50 rounded-full overflow-hidden border border-gray-100">
+                    <div className="h-full w-2/3 bg-green-500 group-hover:w-[90%] transition-all duration-1000 ease-out"></div>
                   </div>
-                  <span className="text-yellow-500 font-bold flex items-center gap-1">
-                    <Zap size={16} fill="currentColor" /> 4
-                  </span>
+                  <div className="flex items-center gap-1.5 bg-yellow-50 px-3 py-1 rounded-full border border-yellow-100">
+                    <Zap
+                      size={14}
+                      className="text-yellow-500"
+                      fill="currentColor"
+                    />
+                    <span className="text-yellow-600 font-bold text-xs">
+                      Level 4
+                    </span>
+                  </div>
                 </div>
-                <div className="aspect-square bg-gray-50 rounded-xl grid grid-cols-4 p-4 gap-4 mb-6 transition-colors group-hover:bg-gray-100">
+
+                <div className="aspect-square bg-gray-50/50 rounded-2xl grid grid-cols-4 p-4 gap-4 mb-8 transition-colors group-hover:bg-green-50/30">
                   {Array.from({ length: 16 }).map((_, i) => (
                     <div
                       key={i}
-                      className={`rounded-lg transition-all duration-300 hover:scale-110 ${i === 3 ? "bg-purple-500 shadow-md shadow-purple-500/20" : "bg-blue-100"}`}
+                      className={`rounded-xl transition-all duration-500 hover:scale-110 ${i === 10 ? "bg-purple-500 shadow-lg shadow-purple-500/20" : "bg-white border border-gray-100"}`}
                     ></div>
                   ))}
                 </div>
-                <div className="bg-gray-900 rounded-lg p-3 text-xs font-mono text-green-400 flex items-center gap-2 group-hover:ring-2 ring-gray-800 transition-all">
-                  <TerminalSquare size={14} className="text-gray-500" />
-                  <span>
-                    while <span className="text-white">gems_remain:</span>
-                  </span>
+
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 flex items-center gap-3 transition-all duration-500 group-hover:bg-white group-hover:border-purple-100">
+                  <div className="w-8 h-8 rounded-lg bg-gray-900 flex items-center justify-center text-green-400">
+                    <TerminalSquare size={16} />
+                  </div>
+                  <div className="font-mono text-xs text-gray-600">
+                    while <span className="text-purple-600">learning:</span>
+                  </div>
                 </div>
               </div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-50 rounded-full -z-10 group-hover:scale-110 transition-transform duration-500"></div>
+              {/* Decorative accent element */}
+              <div className="absolute bottom-4 left-10 w-20 h-20 bg-blue-50/50 rounded-full blur-2xl group-hover:bg-blue-100/50 transition-colors"></div>
             </div>
             <div className="order-1 md:order-2">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight font-serif">
