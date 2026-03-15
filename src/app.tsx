@@ -127,12 +127,12 @@ export function App() {
   return (
     <div className="bg-white text-gray-900 overflow-x-hidden antialiased">
       {/* BEGIN: Top Banner */}
-      <div
+      {/* <div
         className="bg-black text-white py-2 text-center text-sm font-medium hover:bg-gray-900 transition-colors cursor-pointer"
         data-purpose="announcement-banner"
       >
         <p>Pi Day Sale! Save 20% on Premium today only.</p>
-      </div>
+      </div> */}
       {/* END: Top Banner */}
 
       {/* BEGIN: Header */}
