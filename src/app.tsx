@@ -1,5 +1,5 @@
 import type { ComponentChildren } from "preact";
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import {
   CheckCircle2,
   Zap,
@@ -176,6 +176,15 @@ export function App() {
   const [activeCategory, setActiveCategory] = useState<
     "Math" | "ComputerScience" | "DataAnalysis" | "Science"
   >("ComputerScience");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const renderCategoryVisualization = (category: any) => {
     const windowWrapper = (
@@ -202,32 +211,33 @@ export function App() {
     switch (category) {
       case "ComputerScience":
         return windowWrapper(
-          <div className="font-mono text-xs leading-relaxed w-full">
-            <p className="text-gray-500 mb-2">// algorithm.py</p>
-            <div className="space-y-1">
-              <p>
-                <span className="text-purple-400">def</span>{" "}
-                <span className="text-blue-400">binary_search</span>(arr,
-                target):
-              </p>
-              <p className="pl-4 text-purple-400">
-                left, right = <span className="text-orange-400">0</span>,
-                len(arr) - <span className="text-orange-400">1</span>
-              </p>
-              <p className="pl-4 text-purple-400">
-                while <span className="text-white">left &lt;= right:</span>
-              </p>
-              <p className="pl-8 text-gray-400"># Finding the middle</p>
-              <p className="pl-8">
-                mid = (left + right) //{" "}
-                <span className="text-orange-400">2</span>
-              </p>
-              <div className="mt-4 flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                <span className="text-green-500 font-bold tracking-widest text-[10px] uppercase">
-                  Running...
+          <div className="w-full h-full flex items-center justify-center p-6">
+            <div className="w-full space-y-4">
+              <div className="flex justify-between items-center bg-blue-500/5 p-3 rounded-lg border border-blue-500/10">
+                <span className="text-[10px] font-mono text-blue-400">
+                  binary_search(arr, 42)
                 </span>
-                <span className="text-white animate-pulse">|</span>
+                <span className="text-[10px] font-bold text-green-500 animate-pulse">
+                  Running
+                </span>
+              </div>
+              <div className="flex gap-2 justify-center">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-8 h-10 rounded-md border flex items-center justify-center text-[10px] font-bold transition-all duration-500 ${
+                      i === 3
+                        ? "bg-blue-500 border-blue-400 text-white scale-110 shadow-lg shadow-blue-500/40"
+                        : "bg-white/5 border-white/10 text-gray-500"
+                    } animate-[cs-search_4s_infinite]`}
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    {i * 10 + 12}
+                  </div>
+                ))}
+              </div>
+              <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full bg-blue-500 w-1/2 animate-[cs-progress_4s_infinite]"></div>
               </div>
             </div>
           </div>,
@@ -236,61 +246,43 @@ export function App() {
         );
       case "Math":
         return windowWrapper(
-          <div className="w-full h-full flex items-center justify-center">
-            <div className="relative w-48 h-40 border-l border-b border-gray-700">
-              {/* x and y axis labels */}
-              <div className="absolute -bottom-5 right-0 text-[10px] text-gray-500 font-mono">
-                x
-              </div>
-              <div className="absolute -left-4 top-0 text-[10px] text-gray-500 font-mono">
-                y
-              </div>
-
-              {/* Coordinate Grid */}
-              <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-10">
-                {Array.from({ length: 16 }).map((_, i) => (
-                  <div key={i} className="border border-gray-600"></div>
-                ))}
-              </div>
-
+          <div className="w-full h-full flex flex-col items-center justify-center p-4">
+            <div className="relative w-full h-32 flex items-end justify-center gap-1">
+              {[...Array(20)].map((_, i) => (
+                <div
+                  key={i}
+                  className="w-2 bg-blue-500/20 rounded-t-sm transition-all duration-1000 animate-[math-integral_3s_infinite]"
+                  style={{
+                    height: `${Math.sin(i * 0.3) * 40 + 50}%`,
+                    animationDelay: `${i * 0.05}s`,
+                  }}
+                >
+                  <div className="w-full h-full bg-blue-500/40 animate-pulse"></div>
+                </div>
+              ))}
               <svg
                 className="absolute inset-0 w-full h-full overflow-visible"
-                viewBox="0 0 100 100"
                 preserveAspectRatio="none"
+                viewBox="0 0 100 100"
               >
-                <defs>
-                  <linearGradient
-                    id="mathGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
-                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="1" />
-                  </linearGradient>
-                </defs>
                 <path
-                  d="M 5 95 Q 40 95 60 50 T 95 5"
+                  d="M 0 50 Q 25 10, 50 50 T 100 50"
                   fill="none"
-                  stroke="url(#mathGradient)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  className="animate-[draw-path_3s_ease-out_infinite]"
-                  vectorEffect="non-scaling-stroke"
-                />
-                <circle
-                  cx="60"
-                  cy="50"
-                  r="3"
-                  fill="#3b82f6"
-                  className="animate-pulse"
+                  stroke="#3b82f6"
+                  strokeWidth="2"
+                  className="animate-[math-path_3s_infinite]"
                 />
               </svg>
-
-              <div className="absolute top-0 right-0 bg-blue-500/10 text-blue-400 text-[10px] px-2 py-1 rounded-md font-bold shadow-sm border border-blue-500/20 transition-transform group-hover:scale-110">
-                f(x) = sin(x) + x
-              </div>
+            </div>
+            <div className="mt-4 flex gap-4 text-[10px] font-mono text-gray-500">
+              <span className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div> Area:
+                0.84
+              </span>
+              <span className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping"></div>{" "}
+                Slope: 0.12
+              </span>
             </div>
           </div>,
           "border-gray-800 hover:border-blue-500/50",
@@ -298,39 +290,36 @@ export function App() {
         );
       case "DataAnalysis":
         return windowWrapper(
-          <div className="w-full flex flex-col justify-end h-full pt-4">
-            <div className="flex items-end h-32 gap-3 justify-center mb-2">
-              {[
-                { h: "h-[45%]", val: "22%", color: "bg-orange-500/20" },
-                { h: "h-[65%]", val: "31%", color: "bg-orange-500/40" },
-                {
-                  h: "h-[90%]",
-                  val: "47%",
-                  color: "bg-orange-500",
-                  primary: true,
-                },
-                { h: "h-[35%]", val: "15%", color: "bg-orange-500/20" },
-              ].map((bar, i) => (
-                <div
-                  key={i}
-                  className={`w-8 ${bar.h} ${bar.color} rounded-t-lg transition-all duration-700 group-hover:scale-y-105 relative`}
-                >
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-[#0d1117] overflow-hidden">
+            <div className="relative w-full h-32 border-l border-b border-gray-800">
+              {/* Data Points */}
+              <div className="absolute inset-0 flex items-end justify-between px-4 pb-2">
+                {[40, 70, 45, 90, 60].map((h, i) => (
                   <div
-                    className={`absolute -top-6 w-full text-center text-[9px] font-bold font-mono ${bar.primary ? "text-orange-400" : "text-gray-500"}`}
+                    key={i}
+                    className="w-8 bg-orange-500/20 border border-orange-500/40 rounded-t-sm relative group/bar"
+                    style={{ height: `${h}%` }}
                   >
-                    {bar.val}
+                    <div
+                      className="absolute inset-0 bg-orange-500 animate-[data-pulse_3s_infinite]"
+                      style={{ animationDelay: `${i * 0.2}s` }}
+                    ></div>
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-mono text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {h}%
+                    </div>
                   </div>
-                  {bar.primary && (
-                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
+              {/* Scanning Line */}
+              <div className="absolute inset-y-0 w-px bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.5)] animate-[data-scan_4s_linear_infinite]"></div>
             </div>
-            <div className="flex justify-between px-2 text-[9px] text-gray-500 font-bold font-mono border-t border-gray-800 pt-3 uppercase tracking-tighter">
-              <span>Jan</span>
-              <span>Feb</span>
-              <span>Mar</span>
-              <span>Apr</span>
+            <div className="w-full mt-4 flex justify-between px-2">
+              <div className="h-1.5 w-24 bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full bg-orange-500 w-2/3"></div>
+              </div>
+              <span className="text-[9px] font-mono text-gray-500 uppercase">
+                Processing...
+              </span>
             </div>
           </div>,
           "border-gray-800 hover:border-orange-500/50",
@@ -338,26 +327,42 @@ export function App() {
         );
       case "Science":
         return windowWrapper(
-          <div className="relative w-full h-40 flex items-center justify-center">
-            {/* Orbit / Atomic path */}
-            <div className="absolute w-32 h-32 border border-yellow-200/50 rounded-full animate-[spin_8s_linear_infinite]">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-yellow-500 rounded-full shadow-lg shadow-yellow-500/30"></div>
-            </div>
-            <div className="absolute w-20 h-20 border border-yellow-300/30 rounded-full animate-[spin_4s_linear_infinite_reverse]">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-yellow-400 rounded-full"></div>
-            </div>
+          <div className="w-full h-full flex items-center justify-center p-6 bg-[#0d1117] overflow-hidden">
+            <div className="relative w-48 h-48 flex items-center justify-center">
+              {/* Orbital Rings */}
+              <div className="absolute w-full h-full border border-yellow-500/10 rounded-full"></div>
+              <div className="absolute w-3/4 h-3/4 border border-yellow-500/5 rounded-full rotate-45"></div>
 
-            {/* Nucleus / Center */}
-            <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
-              <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              <Zap size={14} className="text-white" fill="currentColor" />
-            </div>
+              {/* Pulsating Nucleus */}
+              <div className="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center border border-yellow-500/40 relative">
+                <div className="absolute inset-0 bg-yellow-500/40 rounded-full animate-ping"></div>
+                <Zap
+                  size={20}
+                  className="text-yellow-500 relative z-10"
+                  fill="currentColor"
+                />
+              </div>
 
-            <div className="absolute bottom-2 right-2 flex items-center gap-1.5 bg-yellow-500/10 border border-yellow-500/20 px-2 py-1 rounded-md">
-              <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-ping"></div>
-              <span className="text-[9px] font-bold text-yellow-500 uppercase tracking-widest">
-                Observable
-              </span>
+              {/* Electrons */}
+              <div className="absolute w-full h-full animate-[spin_8s_linear_infinite]">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-yellow-400 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.8)]"></div>
+              </div>
+              <div className="absolute w-3/4 h-3/4 animate-[spin_5s_linear_infinite_reverse]">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-500 rounded-full"></div>
+              </div>
+
+              {/* Particle Field (Subtle) */}
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-yellow-500/40 rounded-full animate-[science-particle_4s_infinite]"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${i * 0.5}s`,
+                  }}
+                ></div>
+              ))}
             </div>
           </div>,
           "border-gray-800 hover:border-yellow-700/50",
@@ -369,191 +374,193 @@ export function App() {
   };
 
   return (
-    <main className="bg-white text-gray-900 overflow-x-hidden antialiased">
-      <div className={"min-h-dvh flex flex-col"}>
-        <header className="border-b border-gray-200 sticky top-0 bg-white/95 backdrop-blur-md z-50">
-          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
-            <div className="flex items-center cursor-pointer group">
-              <span className="text-3xl font-bold tracking-tight text-gray-900 transition-colors">
-                Brilliant
-              </span>
+    <main className="bg-white text-gray-900 antialiased relative">
+      <header
+        className={`border-b transition-all duration-300 fixed top-0 left-0 w-full z-50 ${isScrolled ? "bg-white/95 backdrop-blur-md border-gray-200 py-2 shadow-sm" : "bg-transparent border-transparent py-4"}`}
+      >
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <div className="flex items-center cursor-pointer group">
+            <span
+              className={`text-3xl font-bold tracking-tight transition-colors ${isScrolled ? "text-gray-900" : "text-gray-900"}`}
+            >
+              Brilliant
+            </span>
+          </div>
+          <div className="flex items-center space-x-4">
+            <button className="px-6 py-2 text-[15px] font-bold text-gray-700 bg-white border border-gray-200 shadow-[0_3px_0_0_#E5E7EB] hover:shadow-[0_1.5px_0_0_#E5E7EB] hover:translate-y-[1.5px] active:shadow-none active:translate-y-[3px] rounded-full transition-all cursor-pointer">
+              Sign in
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* BEGIN: Hero Section */}
+      <section
+        className="h-dvh relative flex flex-col justify-between overflow-hidden"
+        data-purpose="hero-section"
+      >
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 text-center flex flex-col justify-center">
+          <div>
+            {/* Custom "Learn by doing" Graphic Layout */}
+            <div className="relative w-full max-w-[800px] h-auto aspect-2/1  flex items-center justify-center select-none">
+              {/* Background Grid Lines */}
+              <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
+                <div className="w-full h-px bg-gray-400 absolute top-[30%] left-0"></div>
+                <div className="w-full h-px bg-gray-400 absolute top-[65%] left-0"></div>
+              </div>
+
+              {/* Left Box Chart Graphic (Behind 'Learn') */}
+              <div className="absolute left-[8%] top-[15%] w-[120px] h-[100px] z-0 flex items-end gap-1 opacity-70">
+                <div className="w-4 h-[30%] bg-purple-200 rounded-sm"></div>
+                <div className="w-4 h-[60%] bg-purple-300 rounded-sm"></div>
+                <div className="w-4 h-[45%] bg-blue-100 rounded-sm"></div>
+                <div className="w-4 h-[80%] bg-gray-100 rounded-sm relative">
+                  <div className="absolute -top-8 -left-3 bg-purple-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">
+                    31%
+                  </div>
+                  {/* Dotted Line & Caret */}
+                  <div className="absolute -top-2 left-1/2 w-px h-20 border-l border-dashed border-gray-400"></div>
+                  <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border border-gray-300 rounded-full shadow-sm flex items-center justify-center z-10">
+                    <span className="text-[8px] text-gray-500">▶</span>
+                  </div>
+                </div>
+                <div className="w-4 h-[55%] bg-gray-100 rounded-sm"></div>
+              </div>
+
+              {/* Hover Tooltips (between words) */}
+              <div className="absolute left-[25%] top-[73%] z-20 flex flex-col items-start gap-1 transform -translate-y-1/2 -rotate-2">
+                <div className="bg-white border text-blue-500 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-80 border-blue-100 flex items-center gap-1">
+                  <Zap size={10} /> while{" "}
+                  <span className="text-blue-200">learning ▾</span>
+                </div>
+                <div className="bg-white border text-blue-400 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm scale-90 translate-x-2 border-blue-50">
+                  if <span className="text-blue-200">doing ▾</span>
+                </div>
+                <div className="bg-blue-50 border border-blue-200 text-blue-600 text-[11px] font-mono font-bold px-3 py-1 rounded-sm shadow-md mt-1 scale-110 flex items-center gap-1">
+                  keep{" "}
+                  <span className="text-blue-400 font-normal">growing ▾</span>
+                </div>
+                <div className="bg-white border text-blue-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-60 scale-90 border-transparent">
+                  else
+                </div>
+                <div className="bg-white border text-blue-400 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-80 border-blue-100 translate-x-4">
+                  bummer
+                </div>
+              </div>
+
+              {/* Right Scatter Plot Graphic */}
+              <div className="absolute right-[15%] top-[20%] w-[150px] h-[80px] z-0 opacity-60 pointer-events-none">
+                <svg width="100%" height="100%" overflow="visible">
+                  <path
+                    d="M0,50 Q40,40 100,0"
+                    fill="none"
+                    stroke="#fdba74"
+                    strokeWidth="1"
+                    strokeDasharray="2 4"
+                  />
+                  <circle cx="20" cy="45" r="2" fill="#fb923c" />
+                  <circle cx="40" cy="35" r="3" fill="#fb923c" />
+                  <circle cx="60" cy="20" r="2" fill="#fb923c" />
+                  <circle cx="80" cy="10" r="1.5" fill="#fbd38d" />
+                  <circle cx="100" cy="5" r="1" fill="#fbd38d" />
+                  <circle cx="120" cy="0" r="1" fill="#fbd38d" />
+
+                  <circle cx="30" cy="60" r="1.5" fill="#fbd38d" />
+                  <circle cx="50" cy="45" r="1" fill="#fbd38d" />
+                  <circle cx="70" cy="30" r="1.5" fill="#fbd38d" />
+                  <circle cx="90" cy="25" r="2" fill="#fb923c" />
+                  <circle cx="110" cy="15" r="1.5" fill="#fbd38d" />
+                </svg>
+              </div>
+
+              {/* Right Math Bezier Curve Graphic */}
+              <div className="absolute right-[12%] bottom-[20%] w-[80px] h-[80px] z-0 opacity-70 pointer-events-none">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  overflow="visible"
+                >
+                  <path
+                    d="M 0 50 C 40 10 60 90 100 0"
+                    fill="none"
+                    stroke="#93c5fd"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="60"
+                    cy="90"
+                    r="6"
+                    fill="#3b82f6"
+                    fillOpacity="0.8"
+                    className="shadow-lg"
+                  />
+                  <circle
+                    cx="60"
+                    cy="90"
+                    r="10"
+                    fill="none"
+                    stroke="#bfdbfe"
+                    strokeWidth="1"
+                  />
+                </svg>
+              </div>
+
+              {/* Main Text Elements */}
+              <h1 className="text-[9.5rem] font-thin text-black leading-[0.85] relative z-10 font-serif tracking-tight flex flex-col items-center">
+                <div className="flex items-center relative">
+                  Learn
+                  {/* Orange Dots */}
+                  <div className="w-5 h-5 bg-[#ff945e] rounded-full absolute -right-6 bottom-4 shadow-sm z-20"></div>
+                  <div className="w-3.5 h-3.5 bg-[#f5a171] rounded-full absolute -right-1.5 bottom-8 z-20"></div>
+                </div>
+                <div className="flex items-center">
+                  by <span className={"w-30 h-2.5"}></span> doing
+                  <span className="text-[#3b82f6] text-[5rem] translate-y-2">
+                    .
+                  </span>
+                </div>
+              </h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <button className="px-6 py-2 text-[15px] font-bold text-gray-700 bg-white border border-gray-200 shadow-[0_3px_0_0_#E5E7EB] hover:shadow-[0_1.5px_0_0_#E5E7EB] hover:translate-y-[1.5px] active:shadow-none active:translate-y-[3px] rounded-full transition-all cursor-pointer">
-                Sign in
+
+            <p className="text-[21px] text-[#1c1d1f] max-w-[600px] mb-12 font-medium leading-[1.6] mt-8">
+              Interactive problem solving that's effective and fun.
+              <br /> Excel in math and coding.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-5 justify-center w-full max-w-[650px] z-10 relative">
+              <button className="flex-1 py-[16px] px-8 bg-[#22C55E] text-white text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#16A34A] hover:shadow-[0_2px_0_0_#16A34A] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
+                I'm a learner
+              </button>
+              <button className="flex-1 py-[16px] px-8 bg-white border-2 border-gray-100 text-[#1c1d1f] text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
+                I'm a parent or teacher
               </button>
             </div>
-          </nav>
-        </header>
-
-        {/* BEGIN: Hero Section */}
-        <section
-          className=" pb-0 h-full relative flex-1 flex flex-col justify-between overflow-hidden"
-          data-purpose="hero-section"
-        >
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 text-center flex flex-col justify-center">
-            <div>
-              {/* Custom "Learn by doing" Graphic Layout */}
-              <div className="relative w-full max-w-[800px] h-auto aspect-2/1  flex items-center justify-center select-none">
-                {/* Background Grid Lines */}
-                <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
-                  <div className="w-full h-px bg-gray-400 absolute top-[30%] left-0"></div>
-                  <div className="w-full h-px bg-gray-400 absolute top-[65%] left-0"></div>
-                </div>
-
-                {/* Left Box Chart Graphic (Behind 'Learn') */}
-                <div className="absolute left-[8%] top-[15%] w-[120px] h-[100px] z-0 flex items-end gap-1 opacity-70">
-                  <div className="w-4 h-[30%] bg-purple-200 rounded-sm"></div>
-                  <div className="w-4 h-[60%] bg-purple-300 rounded-sm"></div>
-                  <div className="w-4 h-[45%] bg-blue-100 rounded-sm"></div>
-                  <div className="w-4 h-[80%] bg-gray-100 rounded-sm relative">
-                    <div className="absolute -top-8 -left-3 bg-purple-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">
-                      31%
-                    </div>
-                    {/* Dotted Line & Caret */}
-                    <div className="absolute -top-2 left-1/2 w-px h-20 border-l border-dashed border-gray-400"></div>
-                    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border border-gray-300 rounded-full shadow-sm flex items-center justify-center z-10">
-                      <span className="text-[8px] text-gray-500">▶</span>
-                    </div>
-                  </div>
-                  <div className="w-4 h-[55%] bg-gray-100 rounded-sm"></div>
-                </div>
-
-                {/* Hover Tooltips (between words) */}
-                <div className="absolute left-[25%] top-[73%] z-20 flex flex-col items-start gap-1 transform -translate-y-1/2 -rotate-2">
-                  <div className="bg-white border text-blue-500 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-80 border-blue-100 flex items-center gap-1">
-                    <Zap size={10} /> while{" "}
-                    <span className="text-blue-200">learning ▾</span>
-                  </div>
-                  <div className="bg-white border text-blue-400 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm scale-90 translate-x-2 border-blue-50">
-                    if <span className="text-blue-200">doing ▾</span>
-                  </div>
-                  <div className="bg-blue-50 border border-blue-200 text-blue-600 text-[11px] font-mono font-bold px-3 py-1 rounded-sm shadow-md mt-1 scale-110 flex items-center gap-1">
-                    keep{" "}
-                    <span className="text-blue-400 font-normal">growing ▾</span>
-                  </div>
-                  <div className="bg-white border text-blue-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-60 scale-90 border-transparent">
-                    else
-                  </div>
-                  <div className="bg-white border text-blue-400 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-80 border-blue-100 translate-x-4">
-                    bummer
-                  </div>
-                </div>
-
-                {/* Right Scatter Plot Graphic */}
-                <div className="absolute right-[15%] top-[20%] w-[150px] h-[80px] z-0 opacity-60 pointer-events-none">
-                  <svg width="100%" height="100%" overflow="visible">
-                    <path
-                      d="M0,50 Q40,40 100,0"
-                      fill="none"
-                      stroke="#fdba74"
-                      strokeWidth="1"
-                      strokeDasharray="2 4"
-                    />
-                    <circle cx="20" cy="45" r="2" fill="#fb923c" />
-                    <circle cx="40" cy="35" r="3" fill="#fb923c" />
-                    <circle cx="60" cy="20" r="2" fill="#fb923c" />
-                    <circle cx="80" cy="10" r="1.5" fill="#fbd38d" />
-                    <circle cx="100" cy="5" r="1" fill="#fbd38d" />
-                    <circle cx="120" cy="0" r="1" fill="#fbd38d" />
-
-                    <circle cx="30" cy="60" r="1.5" fill="#fbd38d" />
-                    <circle cx="50" cy="45" r="1" fill="#fbd38d" />
-                    <circle cx="70" cy="30" r="1.5" fill="#fbd38d" />
-                    <circle cx="90" cy="25" r="2" fill="#fb923c" />
-                    <circle cx="110" cy="15" r="1.5" fill="#fbd38d" />
-                  </svg>
-                </div>
-
-                {/* Right Math Bezier Curve Graphic */}
-                <div className="absolute right-[12%] bottom-[20%] w-[80px] h-[80px] z-0 opacity-70 pointer-events-none">
-                  <svg
-                    width="100%"
-                    height="100%"
-                    viewBox="0 0 100 100"
-                    overflow="visible"
-                  >
-                    <path
-                      d="M 0 50 C 40 10 60 90 100 0"
-                      fill="none"
-                      stroke="#93c5fd"
-                      strokeWidth="2"
-                    />
-                    <circle
-                      cx="60"
-                      cy="90"
-                      r="6"
-                      fill="#3b82f6"
-                      fillOpacity="0.8"
-                      className="shadow-lg"
-                    />
-                    <circle
-                      cx="60"
-                      cy="90"
-                      r="10"
-                      fill="none"
-                      stroke="#bfdbfe"
-                      strokeWidth="1"
-                    />
-                  </svg>
-                </div>
-
-                {/* Main Text Elements */}
-                <h1 className="text-[9.5rem] font-thin text-black leading-[0.85] relative z-10 font-serif tracking-tight flex flex-col items-center">
-                  <div className="flex items-center relative">
-                    Learn
-                    {/* Orange Dots */}
-                    <div className="w-5 h-5 bg-[#ff945e] rounded-full absolute -right-6 bottom-4 shadow-sm z-20"></div>
-                    <div className="w-3.5 h-3.5 bg-[#f5a171] rounded-full absolute -right-1.5 bottom-8 z-20"></div>
-                  </div>
-                  <div className="flex items-center">
-                    by <span className={"w-30 h-2.5"}></span> doing
-                    <span className="text-[#3b82f6] text-[5rem] translate-y-2">
-                      .
-                    </span>
-                  </div>
-                </h1>
-              </div>
-
-              <p className="text-[21px] text-[#1c1d1f] max-w-[600px] mb-12 font-medium leading-[1.6] mt-8">
-                Interactive problem solving that's effective and fun.
-                <br /> Excel in math and coding.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-5 justify-center w-full max-w-[650px] z-10 relative">
-                <button className="flex-1 py-[16px] px-8 bg-[#22C55E] text-white text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#16A34A] hover:shadow-[0_2px_0_0_#16A34A] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
-                  I'm a learner
-                </button>
-                <button className="flex-1 py-[16px] px-8 bg-white border-2 border-gray-100 text-[#1c1d1f] text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
-                  I'm a parent or teacher
-                </button>
-              </div>
-            </div>
           </div>
+        </div>
 
-          {/* Global Subject Navigation Bar (Sticky at bottom of hero) */}
-          <div className="w-full border-t border-gray-100 bg-white relative">
-            <div className="max-w-7xl mx-auto px-4 h-20 flex justify-center items-center overflow-x-auto hide-scrollbar">
-              <div className="flex justify-between items-center w-full max-w-5xl min-w-[700px] gap-4">
-                {heroNavItems.map((item, i) => (
+        {/* Global Subject Navigation Bar (Sticky at bottom of hero) */}
+        <div className="w-full border-t border-gray-100 bg-white relative">
+          <div className="max-w-7xl mx-auto px-4 h-20 flex justify-center items-center overflow-x-auto hide-scrollbar">
+            <div className="flex justify-between items-center w-full max-w-5xl min-w-[700px] gap-4">
+              {heroNavItems.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]"
+                >
                   <div
-                    key={i}
-                    className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]"
+                    className={`w-6 h-6 flex items-center justify-center ${item.textColor}`}
                   >
-                    <div
-                      className={`w-6 h-6 flex items-center justify-center ${item.textColor}`}
-                    >
-                      {item.icon}
-                    </div>
-                    {item.label}
+                    {item.icon}
                   </div>
-                ))}
-              </div>
+                  {item.label}
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-        {/* END: Hero Section */}
-      </div>
+        </div>
+      </section>
+      {/* END: Hero Section */}
 
       {/* BEGIN: Social Proof */}
       <section
