@@ -136,15 +136,15 @@ export function App() {
       {/* END: Top Banner */}
 
       {/* BEGIN: Header */}
-      <header className="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-md z-50 transition-shadow duration-300 hover:shadow-sm">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <header className="border-b border-gray-200 sticky top-0 bg-white/95 backdrop-blur-md z-50">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
           <div className="flex items-center cursor-pointer group">
-            <span className="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors">
+            <span className="text-3xl font-bold tracking-tight text-gray-900 transition-colors">
               Brilliant
             </span>
           </div>
           <div className="flex items-center space-x-4">
-            <button className="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900 hover:bg-gray-50 border border-gray-200 rounded-md transition-all active:scale-95">
+            <button className="px-6 py-2.5 text-[15px] font-bold text-gray-700 hover:text-gray-900 transition-all border border-gray-300 rounded-full hover:bg-gray-50 hover:shadow-sm">
               Sign in
             </button>
           </div>
@@ -153,67 +153,273 @@ export function App() {
       {/* END: Header */}
 
       {/* BEGIN: Hero Section */}
-      <section className="pt-16 pb-24" data-purpose="hero-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Hero Illustration */}
-          <div className="mb-12 flex justify-center relative">
-            <div className="relative w-full max-w-2xl h-64 flex flex-col items-center justify-center">
-              {/* Decorative elements */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-full h-px bg-gray-100 absolute top-1/4"></div>
-                <div className="w-full h-px bg-gray-100 absolute top-2/4"></div>
-                <div className="w-full h-px bg-gray-100 absolute top-3/4"></div>
-                <div className="h-full w-px bg-gray-100 absolute left-1/4"></div>
-                <div className="h-full w-px bg-gray-100 absolute left-2/4"></div>
-                <div className="h-full w-px bg-gray-100 absolute left-3/4"></div>
+      <section
+        className="pt-20 pb-0 relative overflow-hidden"
+        data-purpose="hero-section"
+      >
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+          {/* Custom "Learn by doing" Graphic Layout */}
+          <div className="relative w-full max-w-[800px] h-auto aspect-[2/1] mb-12 flex items-center justify-center select-none">
+            {/* Background Grid Lines */}
+            <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
+              <div className="w-full h-px bg-gray-400 absolute top-[30%] left-0"></div>
+              <div className="w-full h-px bg-gray-400 absolute top-[65%] left-0"></div>
+            </div>
+
+            {/* Left Box Chart Graphic (Behind 'Learn') */}
+            <div className="absolute left-[8%] top-[15%] w-[120px] h-[100px] z-0 flex items-end gap-1 opacity-70">
+              <div className="w-4 h-[30%] bg-purple-200 rounded-sm"></div>
+              <div className="w-4 h-[60%] bg-purple-300 rounded-sm"></div>
+              <div className="w-4 h-[45%] bg-blue-100 rounded-sm"></div>
+              <div className="w-4 h-[80%] bg-gray-100 rounded-sm relative">
+                <div className="absolute -top-8 -left-3 bg-purple-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">
+                  31%
+                </div>
+                {/* Dotted Line & Caret */}
+                <div className="absolute -top-2 left-1/2 w-px h-20 border-l border-dashed border-gray-400"></div>
+                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border border-gray-300 rounded-full shadow-sm flex items-center justify-center z-10">
+                  <span className="text-[8px] text-gray-500">▶</span>
+                </div>
               </div>
-              <h1 className="text-6xl md:text-[5rem] font-bold text-gray-900 leading-tight relative z-10 font-serif">
-                Learn
-                <br />
-                by doing
-              </h1>
-              {/* Floating pill-like decorations */}
-              <div className="absolute top-0 right-1/4 w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-[10px] font-bold text-purple-600 rotate-12 hover:rotate-0 transition-transform cursor-default shadow-sm">
-                25%
+              <div className="w-4 h-[55%] bg-gray-100 rounded-sm"></div>
+            </div>
+
+            {/* Hover Tooltips (between words) */}
+            <div className="absolute left-[38%] top-[55%] z-20 flex flex-col items-start gap-1 transform -translate-y-1/2 rotate-[-2deg]">
+              <div className="bg-white border text-blue-500 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-80 border-blue-100 flex items-center gap-1">
+                <Zap size={10} /> while{" "}
+                <span className="text-blue-200">learning ▾</span>
               </div>
-              <div className="absolute bottom-10 left-1/4 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 float-anim border border-blue-200 shadow-sm  hover:scale-110 transition-transform">
-                <CheckCircle2 size={16} strokeWidth={3} />
+              <div className="bg-white border text-blue-400 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm scale-90 translate-x-2 border-blue-50">
+                if <span className="text-blue-200">doing ▾</span>
+              </div>
+              <div className="bg-blue-50 border border-blue-200 text-blue-600 text-[11px] font-mono font-bold px-3 py-1 rounded-sm shadow-md mt-1 scale-110 flex items-center gap-1">
+                keep{" "}
+                <span className="text-blue-400 font-normal">growing ▾</span>
+              </div>
+              <div className="bg-white border text-blue-300 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-60 scale-90 border-transparent">
+                else
+              </div>
+              <div className="bg-white border text-blue-400 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-80 border-blue-100 translate-x-4">
+                bummer
               </div>
             </div>
+
+            {/* Right Scatter Plot Graphic */}
+            <div className="absolute right-[15%] top-[20%] w-[150px] h-[80px] z-0 opacity-60 pointer-events-none">
+              <svg width="100%" height="100%" overflow="visible">
+                <path
+                  d="M0,50 Q40,40 100,0"
+                  fill="none"
+                  stroke="#fdba74"
+                  strokeWidth="1"
+                  strokeDasharray="2 4"
+                />
+                <circle cx="20" cy="45" r="2" fill="#fb923c" />
+                <circle cx="40" cy="35" r="3" fill="#fb923c" />
+                <circle cx="60" cy="20" r="2" fill="#fb923c" />
+                <circle cx="80" cy="10" r="1.5" fill="#fbd38d" />
+                <circle cx="100" cy="5" r="1" fill="#fbd38d" />
+                <circle cx="120" cy="0" r="1" fill="#fbd38d" />
+
+                <circle cx="30" cy="60" r="1.5" fill="#fbd38d" />
+                <circle cx="50" cy="45" r="1" fill="#fbd38d" />
+                <circle cx="70" cy="30" r="1.5" fill="#fbd38d" />
+                <circle cx="90" cy="25" r="2" fill="#fb923c" />
+                <circle cx="110" cy="15" r="1.5" fill="#fbd38d" />
+              </svg>
+            </div>
+
+            {/* Right Math Bezier Curve Graphic */}
+            <div className="absolute right-[12%] bottom-[20%] w-[80px] h-[80px] z-0 opacity-70 pointer-events-none">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 100 100"
+                overflow="visible"
+              >
+                <path
+                  d="M 0 50 C 40 10 60 90 100 0"
+                  fill="none"
+                  stroke="#93c5fd"
+                  strokeWidth="2"
+                />
+                <circle
+                  cx="60"
+                  cy="90"
+                  r="6"
+                  fill="#3b82f6"
+                  fillOpacity="0.8"
+                  className="shadow-lg"
+                />
+                <circle
+                  cx="60"
+                  cy="90"
+                  r="10"
+                  fill="none"
+                  stroke="#bfdbfe"
+                  strokeWidth="1"
+                />
+              </svg>
+            </div>
+
+            {/* Main Text Elements */}
+            <h1 className="text-[9.5rem] font-bold text-black leading-[0.85] relative z-10 font-serif tracking-tight flex flex-col items-center">
+              <div className="flex items-center relative">
+                Learn
+                {/* Orange Dots */}
+                <div className="w-5 h-5 bg-[#ff945e] rounded-full absolute -right-6 bottom-4 shadow-sm z-20"></div>
+                <div className="w-3.5 h-3.5 bg-[#f5a171] rounded-full absolute -right-1.5 bottom-8 z-20"></div>
+              </div>
+              <div className="flex items-center">
+                by doing
+                <span className="text-[#3b82f6] text-[5rem] translate-y-2">
+                  .
+                </span>
+              </div>
+            </h1>
           </div>
-          <h2 className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
-            Interactive problem solving that's effective and fun. Excel in math
-            and coding.
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-10 py-4 bg-[#22c55e] hover:bg-green-600 text-white font-bold rounded-full transition-all transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg">
+
+          <p className="text-[21px] text-[#1c1d1f] max-w-[600px] mb-12 font-medium leading-[1.6] mt-8">
+            Interactive problem solving that's effective and fun.
+            <br /> Excel in math and coding.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-5 justify-center w-full max-w-[650px] z-10 relative">
+            <button className="flex-1 py-[18px] bg-[#22c55e] hover:bg-[#1fb355] text-white text-[17px] font-bold rounded-full transition-all shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] hover:shadow-[0_6px_20px_rgba(34,197,94,0.23)] hover:-translate-y-0.5 active:translate-y-0">
               I'm a learner
             </button>
-            <button className="px-10 py-4 bg-white border-2 border-gray-100 hover:border-gray-200 text-gray-800 font-bold rounded-full transition-all shadow-sm hover:shadow active:scale-95 hover:bg-gray-50">
+            <button className="flex-1 py-[18px] bg-white border-2 border-gray-200 text-black text-[17px] font-bold rounded-full transition-all hover:border-gray-300 hover:bg-gray-50 hover:-translate-y-0.5 active:translate-y-0 shadow-sm">
               I'm a parent or teacher
             </button>
           </div>
-          {/* Subject Nav */}
-          <div className="mt-20 flex flex-wrap justify-center gap-8 text-sm font-semibold text-gray-500">
-            <div className="flex items-center gap-2 hover:text-blue-500 cursor-pointer group">
-              <span className="w-4 h-4 bg-blue-200 rounded-sm group-hover:bg-blue-300 transition-colors"></span>{" "}
-              Math
+
+          {/* Spacing element to push nav down */}
+          <div className="h-24 md:h-32"></div>
+        </div>
+
+        {/* Global Subject Navigation Bar (Sticky at bottom of hero) */}
+        <div className="w-full border-t border-gray-100 bg-white relative">
+          {/* Mascot / Icon peeking out */}
+          <div className="absolute -top-[22px] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center cursor-pointer group">
+            <div className="w-12 h-10 bg-[#22c55e] rounded-t-2xl relative overflow-hidden transition-transform group-hover:-translate-y-1">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-4 bg-white rounded-md flex justify-center items-center gap-1 shadow-inner">
+                <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
+                <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
+              </div>
             </div>
-            <div className="flex items-center gap-2 hover:text-purple-500 cursor-pointer group">
-              <span className="w-4 h-4 bg-purple-200 rounded-sm group-hover:bg-purple-300 transition-colors"></span>{" "}
-              Computer Science
-            </div>
-            <div className="flex items-center gap-2 hover:text-pink-500 cursor-pointer group">
-              <span className="w-4 h-4 bg-pink-200 rounded-sm group-hover:bg-pink-300 transition-colors"></span>{" "}
-              Coding &amp; AI
-            </div>
-            <div className="flex items-center gap-2 hover:text-orange-500 cursor-pointer group">
-              <span className="w-4 h-4 bg-orange-200 rounded-sm group-hover:bg-orange-300 transition-colors"></span>{" "}
-              Data Analysis
-            </div>
-            <div className="flex items-center gap-2 hover:text-yellow-500 cursor-pointer group">
-              <span className="w-4 h-4 bg-yellow-200 rounded-sm group-hover:bg-yellow-300 transition-colors"></span>{" "}
-              Science &amp; Engineering
+            {/* Small triangle shadow base */}
+            <div className="w-16 h-2 bg-black/5 rounded-full blur-sm absolute -bottom-1"></div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 h-20 flex justify-center items-center overflow-x-auto hide-scrollbar">
+            <div className="flex justify-between items-center w-full max-w-5xl min-w-[700px] gap-4">
+              <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[15px] font-medium text-[#1c1d1f]">
+                <div className="w-6 h-6 flex items-center justify-center text-blue-500">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="20"
+                    height="20"
+                  >
+                    <rect
+                      x="2"
+                      y="10"
+                      width="10"
+                      height="10"
+                      fill="#60a5fa"
+                      rx="1"
+                    />
+                    <rect
+                      x="12"
+                      y="2"
+                      width="10"
+                      height="10"
+                      fill="#3b82f6"
+                      rx="1"
+                    />
+                    <path d="M12 12 L22 12" stroke="white" strokeWidth="2" />
+                    <path d="M12 2 L12 12" stroke="white" strokeWidth="2" />
+                  </svg>
+                </div>
+                Math
+              </div>
+
+              <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[15px] font-medium text-[#1c1d1f]">
+                <div className="w-6 h-6 flex items-center justify-center text-purple-500">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="20"
+                    height="20"
+                  >
+                    <path
+                      d="M4 8 L20 8 M4 16 L20 16"
+                      stroke="#9333ea"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="8" cy="8" r="3" fill="#c084fc" />
+                    <circle cx="16" cy="16" r="3" fill="#a855f7" />
+                  </svg>
+                </div>
+                Computer Science
+              </div>
+
+              <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[15px] font-medium text-[#1c1d1f]">
+                <div className="w-6 h-6 flex items-center justify-center text-indigo-500">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="20"
+                    height="20"
+                  >
+                    <circle cx="12" cy="6" r="4" fill="#818cf8" />
+                    <circle cx="6" cy="18" r="4" fill="#6366f1" />
+                    <circle cx="18" cy="18" r="4" fill="#a5b4fc" />
+                    <path
+                      d="M12 10 L6 14 M12 10 L18 14"
+                      stroke="#818cf8"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </div>
+                Coding & AI
+              </div>
+
+              <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[15px] font-medium text-[#1c1d1f]">
+                <div className="w-6 h-6 flex items-center justify-center text-red-400">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="20"
+                    height="20"
+                  >
+                    <path
+                      d="M2 20 L8 10 L14 16 L22 4"
+                      fill="none"
+                      stroke="#f87171"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <circle cx="8" cy="10" r="2.5" fill="#fca5a5" />
+                    <circle cx="14" cy="16" r="2.5" fill="#ef4444" />
+                  </svg>
+                </div>
+                Data Analysis
+              </div>
+
+              <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[15px] font-medium text-[#1c1d1f]">
+                <div className="w-6 h-6 flex items-center justify-center text-yellow-500">
+                  <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+                    <circle cx="8" cy="12" r="5" fill="#eab308" />
+                    <circle cx="16" cy="8" r="4" fill="#facc15" />
+                    <circle cx="14" cy="16" r="4" fill="#ca8a04" />
+                  </svg>
+                </div>
+                Science & Engineering
+              </div>
             </div>
           </div>
         </div>
