@@ -176,67 +176,112 @@ export function App() {
     "Math" | "ComputerScience" | "DataAnalysis" | "Science"
   >("ComputerScience");
 
-  const getCodeSnippet = (category: any) => {
+  const renderCategoryVisualization = (category: any) => {
     switch (category) {
       case "ComputerScience":
         return (
-          <>
-            <p className="text-gray-500 mb-2"># Python 3</p>
-            <p className="text-purple-400">
-              while <span className="text-white">active:</span>
-            </p>
-            <p className="pl-4 text-blue-400">solve_problem()</p>
-            <p className="pl-4 text-green-500/80"># Learning happens here</p>
-            <p className="text-purple-400">
-              if <span className="text-white">done:</span>
-            </p>
-            <p className="pl-4 text-blue-400">celebrate()</p>
-          </>
+          <div className="w-full max-w-sm bg-[#0d1117] rounded-xl overflow-hidden shadow-2xl border border-gray-800 group hover:border-gray-700 transition-colors cursor-text">
+            <div className="bg-[#161b22] px-4 py-2 flex gap-2 border-b border-gray-800">
+              <div className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 cursor-pointer"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 cursor-pointer"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 cursor-pointer"></div>
+            </div>
+            <div className="p-6 font-mono text-xs leading-relaxed min-h-[160px]">
+              <p className="text-gray-500 mb-2"># Python 3</p>
+              <p className="text-purple-400">
+                while <span className="text-white">active:</span>
+              </p>
+              <p className="pl-4 text-blue-400">solve_problem()</p>
+              <p className="pl-4 text-green-500/80"># Learning happens here</p>
+              <p className="text-purple-400">
+                if <span className="text-white">done:</span>
+              </p>
+              <p className="pl-4 text-blue-400">celebrate()</p>
+              <div className="mt-4 flex gap-2 animate-pulse">
+                <span className="text-white">_</span>
+              </div>
+            </div>
+          </div>
         );
       case "Math":
         return (
-          <>
-            <p className="text-gray-500 mb-2">% Calculus</p>
-            <p className="text-blue-400">
-              f(x) = <span className="text-white">x^2 + 2x + 1</span>
-            </p>
-            <p className="pl-4 text-green-500/80">% Derivative</p>
-            <p className="text-purple-400">
-              f'(x) = <span className="text-white">2x + 2</span>
-            </p>
-          </>
+          <div className="w-full max-w-sm bg-white rounded-xl overflow-hidden shadow-2xl border border-gray-100 group transition-all duration-500 hover:shadow-blue-500/20 relative flex flex-col items-center justify-center min-h-[220px]">
+            <div className="p-8 w-full">
+              <div className="text-blue-500 font-serif text-3xl font-bold mb-4 text-center">
+                &int; e<sup className="text-sm">x</sup> dx = e
+                <sup className="text-sm">x</sup> + C
+              </div>
+              <div className="h-[100px] w-full border-b-2 border-l-2 border-blue-50 relative mt-4">
+                <svg
+                  className="absolute inset-0 w-full h-full overflow-visible"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M 0 100 Q 50 100 100 0"
+                    fill="none"
+                    stroke="#3b82f6"
+                    strokeWidth="3"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                </svg>
+                <div className="absolute top-2 right-2 text-blue-400 text-xs font-mono bg-white px-1">
+                  f(x) = e^x
+                </div>
+              </div>
+            </div>
+          </div>
         );
       case "DataAnalysis":
         return (
-          <>
-            <p className="text-gray-500 mb-2">-- SQL</p>
-            <p className="text-purple-400">
-              SELECT{" "}
-              <span className="text-blue-400">user_id, learning_streak</span>
-            </p>
-            <p className="text-purple-400">
-              FROM <span className="text-white">users</span>
-            </p>
-            <p className="text-purple-400">
-              WHERE <span className="text-white">active = true</span>
-            </p>
-            <p className="pl-4 text-green-500/80">-- Query optimization</p>
-          </>
+          <div className="w-full max-w-sm bg-white rounded-xl overflow-hidden shadow-2xl border border-gray-100 group transition-all duration-500 hover:shadow-orange-500/20 p-8 min-h-[220px] flex flex-col justify-end">
+            <div className="flex items-end h-[120px] gap-3 justify-center border-b-2 border-gray-100 pb-2">
+              <div className="w-10 bg-orange-100 rounded-t-sm h-[40%] group-hover:bg-orange-200 transition-colors relative">
+                <div className="absolute -top-6 w-full text-center text-[10px] text-gray-400 font-mono font-bold">
+                  1.2k
+                </div>
+              </div>
+              <div className="w-10 bg-orange-200 rounded-t-sm h-[60%] group-hover:bg-orange-300 transition-colors relative">
+                <div className="absolute -top-6 w-full text-center text-[10px] text-gray-400 font-mono font-bold">
+                  3.4k
+                </div>
+              </div>
+              <div className="w-10 bg-orange-400 rounded-t-sm h-[95%] group-hover:bg-orange-500 transition-colors relative shadow-orange-500/20 shadow-lg">
+                <div className="absolute -top-6 w-full text-center text-[10px] text-orange-500 font-mono font-bold">
+                  8.9k
+                </div>
+              </div>
+              <div className="w-10 bg-orange-300 rounded-t-sm h-[75%] group-hover:bg-orange-400 transition-colors relative">
+                <div className="absolute -top-6 w-full text-center text-[10px] text-gray-400 font-mono font-bold">
+                  5.6k
+                </div>
+              </div>
+            </div>
+            <div className="mt-3 flex justify-center gap-7 text-[10px] text-gray-400 font-mono font-bold uppercase tracking-wider">
+              <span>Q1</span>
+              <span>Q2</span>
+              <span>Q3</span>
+              <span>Q4</span>
+            </div>
+          </div>
         );
       case "Science":
         return (
-          <>
-            <p className="text-gray-500 mb-2">/* Physics Simulation */</p>
-            <p className="text-blue-400">
-              const <span className="text-white">gravity = -9.81;</span>
-            </p>
-            <p className="text-purple-400">
-              function <span className="text-blue-400">updatePosition</span>
-              <span className="text-white">(dt) {"{"}</span>
-            </p>
-            <p className="pl-4 text-white">velocity += gravity * dt;</p>
-            <p className="text-white">{"}"}</p>
-          </>
+          <div className="w-full max-w-sm bg-[#1a1c23] rounded-xl overflow-hidden shadow-2xl border border-gray-800 group hover:border-yellow-700/50 transition-colors relative h-[220px] flex items-center justify-center cursor-default">
+            <div className="w-full h-px bg-gray-700/50 absolute top-8"></div>
+
+            {/* Pivot point */}
+            <div className="absolute top-8 w-2 h-2 bg-gray-500 rounded-full z-10 -translate-y-1/2"></div>
+
+            {/* Pendulum Arm & Bob */}
+            <div className="absolute top-8 w-px h-[100px] bg-yellow-600/50 origin-top rotate-25 transition-all duration-2000 ease-in-out group-hover:-rotate-25">
+              <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.6)]"></div>
+            </div>
+
+            <div className="absolute -bottom-4 bg-gray-900 px-4 py-2 border border-gray-800 rounded-lg shadow-xl font-mono text-yellow-500 text-xs transform -translate-y-8">
+              T = 2π&radic;(L/g)
+            </div>
+          </div>
         );
     }
   };
@@ -435,33 +480,46 @@ export function App() {
       >
         <div className="max-w-7xl mx-auto px-4">
           <p className="text-center text-3xl font-bold text-gray-800 mb-12 font-serif">
-            Join over 10 million learners worldwide
+            Join a thriving open-source community
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-5 items-center gap-8 md:gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-            <div className="flex justify-center hover:scale-110 transition-transform cursor-default">
-              <span className="text-xl font-serif font-bold italic whitespace-nowrap">
-                The New York Times
+          <div className="grid grid-cols-2 md:grid-cols-5 items-center gap-8 md:gap-12 opacity-80 grayscale hover:grayscale-0 transition-all duration-700">
+            <div className="flex flex-col items-center justify-center hover:scale-110 transition-transform cursor-default gap-2">
+              <div className="w-8 h-8 flex items-center justify-center text-gray-900">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="24"
+                  height="24"
+                >
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+              </div>
+              <span className="text-sm font-bold uppercase tracking-widest text-gray-500">
+                GitHub Ready
               </span>
             </div>
-            <div className="flex justify-center hover:scale-110 transition-transform cursor-default">
-              <span className="text-xl font-serif font-bold italic whitespace-nowrap">
-                The Atlantic
+            <div className="flex flex-col items-center justify-center hover:scale-110 transition-transform cursor-default gap-2">
+              <span className="text-xl font-bold text-gray-900">500+</span>
+              <span className="text-sm font-bold uppercase tracking-widest text-gray-500">
+                Contributors
               </span>
             </div>
             <div className="flex flex-col items-center justify-center hover:scale-110 transition-transform cursor-default">
               <div className="flex text-yellow-500 text-xs mb-1">★★★★★</div>
               <span className="text-[9px] uppercase tracking-widest font-bold text-center">
-                Over 100,000 5-star reviews
+                Community Approved
               </span>
             </div>
-            <div className="flex justify-center hover:scale-110 transition-transform cursor-default">
-              <span className="text-xl font-bold italic whitespace-nowrap">
-                Editors' Choice
+            <div className="flex flex-col items-center justify-center hover:scale-110 transition-transform cursor-default gap-2">
+              <span className="text-xl font-bold text-gray-900">100% Free</span>
+              <span className="text-sm font-bold uppercase tracking-widest text-gray-500">
+                Open Source
               </span>
             </div>
-            <div className="flex justify-center hover:scale-110 transition-transform cursor-default">
-              <span className="text-xl font-serif font-bold italic whitespace-nowrap">
-                Featured App
+            <div className="flex flex-col items-center justify-center hover:scale-110 transition-transform cursor-default gap-2">
+              <span className="text-xl font-bold text-gray-900">Global</span>
+              <span className="text-sm font-bold uppercase tracking-widest text-gray-500">
+                Collaboration
               </span>
             </div>
           </div>
@@ -471,7 +529,7 @@ export function App() {
 
       {/* BEGIN: Concepts that click */}
       <section
-        className="py-24 bg-linear-to-b from-[#f3f9f8] to-[#e4f2f0]"
+        className="py-24 bg-[linear-gradient(90deg,rgb(248,248,248)0%,rgb(234,247,246)100%)]"
         data-purpose="feature-concepts"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -654,27 +712,15 @@ export function App() {
               </ul>
             </div>
             <div className="bg-white/5 p-12 flex items-center justify-center relative border-l border-white/5">
-              <div className="w-full max-w-sm bg-[#0d1117] rounded-xl overflow-hidden shadow-2xl border border-gray-800 group hover:border-gray-700 transition-colors cursor-text">
-                <div className="bg-[#161b22] px-4 py-2 flex gap-2 border-b border-gray-800">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 cursor-pointer"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 cursor-pointer"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 cursor-pointer"></div>
-                </div>
-                <div className="p-6 font-mono text-xs leading-relaxed min-h-[160px]">
-                  {getCodeSnippet(activeCategory)}
-                  <div className="mt-4 flex gap-2 animate-pulse">
-                    <span className="text-white">_</span>
-                  </div>
-                </div>
-              </div>
+              {renderCategoryVisualization(activeCategory)}
               <div className="absolute bottom-8 right-8 text-white/5 font-bold text-4xl italic uppercase tracking-wider select-none pointer-events-none transition-all duration-500">
                 {activeCategory === "ComputerScience"
                   ? "Python"
                   : activeCategory === "DataAnalysis"
-                    ? "SQL"
+                    ? "DATA"
                     : activeCategory === "Math"
-                      ? "Math"
-                      : "Physics"}
+                      ? "CALCULUS"
+                      : "PHYSICS"}
               </div>
             </div>
           </div>
