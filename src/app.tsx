@@ -1,3 +1,4 @@
+import type { ComponentChildren } from "preact";
 import { useState } from "preact/hooks";
 import {
   CheckCircle2,
@@ -177,112 +178,193 @@ export function App() {
   >("ComputerScience");
 
   const renderCategoryVisualization = (category: any) => {
+    const windowWrapper = (
+      content: ComponentChildren,
+      borderColor: string,
+      isDark: boolean = false,
+    ) => (
+      <div
+        className={`w-full max-w-sm ${isDark ? "bg-[#0d1117]" : "bg-white"} rounded-xl overflow-hidden shadow-2xl border ${borderColor} group transition-all duration-500 relative flex flex-col min-h-[220px]`}
+      >
+        <div
+          className={`${isDark ? "bg-[#161b22] border-gray-800" : "bg-gray-50 border-gray-100"} px-4 py-2.5 flex gap-1.5 border-b`}
+        >
+          <div className="w-2.5 h-2.5 rounded-full bg-red-400/80"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-green-400/80"></div>
+        </div>
+        <div className="flex-1 relative overflow-hidden flex items-center justify-center p-6">
+          {content}
+        </div>
+      </div>
+    );
+
     switch (category) {
       case "ComputerScience":
-        return (
-          <div className="w-full max-w-sm bg-[#0d1117] rounded-xl overflow-hidden shadow-2xl border border-gray-800 group hover:border-gray-700 transition-colors cursor-text">
-            <div className="bg-[#161b22] px-4 py-2 flex gap-2 border-b border-gray-800">
-              <div className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 cursor-pointer"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 cursor-pointer"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 cursor-pointer"></div>
-            </div>
-            <div className="p-6 font-mono text-xs leading-relaxed min-h-[160px]">
-              <p className="text-gray-500 mb-2"># Python 3</p>
-              <p className="text-purple-400">
-                while <span className="text-white">active:</span>
+        return windowWrapper(
+          <div className="font-mono text-xs leading-relaxed w-full">
+            <p className="text-gray-500 mb-2">// algorithm.py</p>
+            <div className="space-y-1">
+              <p>
+                <span className="text-purple-400">def</span>{" "}
+                <span className="text-blue-400">binary_search</span>(arr,
+                target):
               </p>
-              <p className="pl-4 text-blue-400">solve_problem()</p>
-              <p className="pl-4 text-green-500/80"># Learning happens here</p>
-              <p className="text-purple-400">
-                if <span className="text-white">done:</span>
+              <p className="pl-4 text-purple-400">
+                left, right = <span className="text-orange-400">0</span>,
+                len(arr) - <span className="text-orange-400">1</span>
               </p>
-              <p className="pl-4 text-blue-400">celebrate()</p>
-              <div className="mt-4 flex gap-2 animate-pulse">
-                <span className="text-white">_</span>
+              <p className="pl-4 text-purple-400">
+                while <span className="text-white">left &lt;= right:</span>
+              </p>
+              <p className="pl-8 text-gray-400"># Finding the middle</p>
+              <p className="pl-8">
+                mid = (left + right) //{" "}
+                <span className="text-orange-400">2</span>
+              </p>
+              <div className="mt-4 flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-green-500 font-bold tracking-widest text-[10px] uppercase">
+                  Running...
+                </span>
+                <span className="text-white animate-pulse">|</span>
               </div>
             </div>
-          </div>
+          </div>,
+          "border-gray-800 hover:border-blue-500/50",
+          true,
         );
       case "Math":
-        return (
-          <div className="w-full max-w-sm bg-white rounded-xl overflow-hidden shadow-2xl border border-gray-100 group transition-all duration-500 hover:shadow-blue-500/20 relative flex flex-col items-center justify-center min-h-[220px]">
-            <div className="p-8 w-full">
-              <div className="text-blue-500 font-serif text-3xl font-bold mb-4 text-center">
-                &int; e<sup className="text-sm">x</sup> dx = e
-                <sup className="text-sm">x</sup> + C
+        return windowWrapper(
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="relative w-48 h-40 border-l border-b border-gray-700">
+              {/* x and y axis labels */}
+              <div className="absolute -bottom-5 right-0 text-[10px] text-gray-500 font-mono">
+                x
               </div>
-              <div className="h-[100px] w-full border-b-2 border-l-2 border-blue-50 relative mt-4">
-                <svg
-                  className="absolute inset-0 w-full h-full overflow-visible"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M 0 100 Q 50 100 100 0"
-                    fill="none"
-                    stroke="#3b82f6"
-                    strokeWidth="3"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-                <div className="absolute top-2 right-2 text-blue-400 text-xs font-mono bg-white px-1">
-                  f(x) = e^x
-                </div>
+              <div className="absolute -left-4 top-0 text-[10px] text-gray-500 font-mono">
+                y
+              </div>
+
+              {/* Coordinate Grid */}
+              <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-10">
+                {Array.from({ length: 16 }).map((_, i) => (
+                  <div key={i} className="border border-gray-600"></div>
+                ))}
+              </div>
+
+              <svg
+                className="absolute inset-0 w-full h-full overflow-visible"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient
+                    id="mathGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="1" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M 5 95 Q 40 95 60 50 T 95 5"
+                  fill="none"
+                  stroke="url(#mathGradient)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  className="animate-[draw-path_3s_ease-out_infinite]"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <circle
+                  cx="60"
+                  cy="50"
+                  r="3"
+                  fill="#3b82f6"
+                  className="animate-pulse"
+                />
+              </svg>
+
+              <div className="absolute top-0 right-0 bg-blue-500/10 text-blue-400 text-[10px] px-2 py-1 rounded-md font-bold shadow-sm border border-blue-500/20 transition-transform group-hover:scale-110">
+                f(x) = sin(x) + x
               </div>
             </div>
-          </div>
+          </div>,
+          "border-gray-800 hover:border-blue-500/50",
+          true,
         );
       case "DataAnalysis":
-        return (
-          <div className="w-full max-w-sm bg-white rounded-xl overflow-hidden shadow-2xl border border-gray-100 group transition-all duration-500 hover:shadow-orange-500/20 p-8 min-h-[220px] flex flex-col justify-end">
-            <div className="flex items-end h-[120px] gap-3 justify-center border-b-2 border-gray-100 pb-2">
-              <div className="w-10 bg-orange-100 rounded-t-sm h-[40%] group-hover:bg-orange-200 transition-colors relative">
-                <div className="absolute -top-6 w-full text-center text-[10px] text-gray-400 font-mono font-bold">
-                  1.2k
+        return windowWrapper(
+          <div className="w-full flex flex-col justify-end h-full pt-4">
+            <div className="flex items-end h-32 gap-3 justify-center mb-2">
+              {[
+                { h: "h-[45%]", val: "22%", color: "bg-orange-500/20" },
+                { h: "h-[65%]", val: "31%", color: "bg-orange-500/40" },
+                {
+                  h: "h-[90%]",
+                  val: "47%",
+                  color: "bg-orange-500",
+                  primary: true,
+                },
+                { h: "h-[35%]", val: "15%", color: "bg-orange-500/20" },
+              ].map((bar, i) => (
+                <div
+                  key={i}
+                  className={`w-8 ${bar.h} ${bar.color} rounded-t-lg transition-all duration-700 group-hover:scale-y-105 relative`}
+                >
+                  <div
+                    className={`absolute -top-6 w-full text-center text-[9px] font-bold font-mono ${bar.primary ? "text-orange-400" : "text-gray-500"}`}
+                  >
+                    {bar.val}
+                  </div>
+                  {bar.primary && (
+                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                  )}
                 </div>
-              </div>
-              <div className="w-10 bg-orange-200 rounded-t-sm h-[60%] group-hover:bg-orange-300 transition-colors relative">
-                <div className="absolute -top-6 w-full text-center text-[10px] text-gray-400 font-mono font-bold">
-                  3.4k
-                </div>
-              </div>
-              <div className="w-10 bg-orange-400 rounded-t-sm h-[95%] group-hover:bg-orange-500 transition-colors relative shadow-orange-500/20 shadow-lg">
-                <div className="absolute -top-6 w-full text-center text-[10px] text-orange-500 font-mono font-bold">
-                  8.9k
-                </div>
-              </div>
-              <div className="w-10 bg-orange-300 rounded-t-sm h-[75%] group-hover:bg-orange-400 transition-colors relative">
-                <div className="absolute -top-6 w-full text-center text-[10px] text-gray-400 font-mono font-bold">
-                  5.6k
-                </div>
-              </div>
+              ))}
             </div>
-            <div className="mt-3 flex justify-center gap-7 text-[10px] text-gray-400 font-mono font-bold uppercase tracking-wider">
-              <span>Q1</span>
-              <span>Q2</span>
-              <span>Q3</span>
-              <span>Q4</span>
+            <div className="flex justify-between px-2 text-[9px] text-gray-500 font-bold font-mono border-t border-gray-800 pt-3 uppercase tracking-tighter">
+              <span>Jan</span>
+              <span>Feb</span>
+              <span>Mar</span>
+              <span>Apr</span>
             </div>
-          </div>
+          </div>,
+          "border-gray-800 hover:border-orange-500/50",
+          true,
         );
       case "Science":
-        return (
-          <div className="w-full max-w-sm bg-[#1a1c23] rounded-xl overflow-hidden shadow-2xl border border-gray-800 group hover:border-yellow-700/50 transition-colors relative h-[220px] flex items-center justify-center cursor-default">
-            <div className="w-full h-px bg-gray-700/50 absolute top-8"></div>
-
-            {/* Pivot point */}
-            <div className="absolute top-8 w-2 h-2 bg-gray-500 rounded-full z-10 -translate-y-1/2"></div>
-
-            {/* Pendulum Arm & Bob */}
-            <div className="absolute top-8 w-px h-[100px] bg-yellow-600/50 origin-top rotate-25 transition-all duration-2000 ease-in-out group-hover:-rotate-25">
-              <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.6)]"></div>
+        return windowWrapper(
+          <div className="relative w-full h-40 flex items-center justify-center">
+            {/* Orbit / Atomic path */}
+            <div className="absolute w-32 h-32 border border-yellow-200/50 rounded-full animate-[spin_8s_linear_infinite]">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-yellow-500 rounded-full shadow-lg shadow-yellow-500/30"></div>
+            </div>
+            <div className="absolute w-20 h-20 border border-yellow-300/30 rounded-full animate-[spin_4s_linear_infinite_reverse]">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-yellow-400 rounded-full"></div>
             </div>
 
-            <div className="absolute -bottom-4 bg-gray-900 px-4 py-2 border border-gray-800 rounded-lg shadow-xl font-mono text-yellow-500 text-xs transform -translate-y-8">
-              T = 2π&radic;(L/g)
+            {/* Nucleus / Center */}
+            <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
+              <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              <Zap size={14} className="text-white" fill="currentColor" />
             </div>
-          </div>
+
+            <div className="absolute bottom-2 right-2 flex items-center gap-1.5 bg-yellow-500/10 border border-yellow-500/20 px-2 py-1 rounded-md">
+              <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-ping"></div>
+              <span className="text-[9px] font-bold text-yellow-500 uppercase tracking-widest">
+                Observable
+              </span>
+            </div>
+          </div>,
+          "border-gray-800 hover:border-yellow-700/50",
+          true,
         );
+      default:
+        return null;
     }
   };
 
