@@ -54,6 +54,123 @@ const courses = {
 // ... database import fix
 import { Database } from "lucide-preact";
 
+const heroNavItems = [
+  {
+    label: "Math",
+    textColor: "text-blue-500",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <rect x="2" y="10" width="10" height="10" fill="#60a5fa" rx="1" />
+        <rect x="12" y="2" width="10" height="10" fill="#3b82f6" rx="1" />
+        <path d="M12 12 L22 12" stroke="white" strokeWidth="2" />
+        <path d="M12 2 L12 12" stroke="white" strokeWidth="2" />
+      </svg>
+    ),
+  },
+  {
+    label: "Computer Science",
+    textColor: "text-purple-500",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path
+          d="M4 8 L20 8 M4 16 L20 16"
+          stroke="#9333ea"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <circle cx="8" cy="8" r="3" fill="#c084fc" />
+        <circle cx="16" cy="16" r="3" fill="#a855f7" />
+      </svg>
+    ),
+  },
+  {
+    label: "Coding & AI",
+    textColor: "text-indigo-500",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <circle cx="12" cy="6" r="4" fill="#818cf8" />
+        <circle cx="6" cy="18" r="4" fill="#6366f1" />
+        <circle cx="18" cy="18" r="4" fill="#a5b4fc" />
+        <path d="M12 10 L6 14 M12 10 L18 14" stroke="#818cf8" strokeWidth="2" />
+      </svg>
+    ),
+  },
+  {
+    label: "Data Analysis",
+    textColor: "text-red-400",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path
+          d="M2 20 L8 10 L14 16 L22 4"
+          fill="none"
+          stroke="#f87171"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="8" cy="10" r="2.5" fill="#fca5a5" />
+        <circle cx="14" cy="16" r="2.5" fill="#ef4444" />
+      </svg>
+    ),
+  },
+  {
+    label: "Science & Engineering",
+    textColor: "text-yellow-500",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+        <circle cx="8" cy="12" r="5" fill="#eab308" />
+        <circle cx="16" cy="8" r="4" fill="#facc15" />
+        <circle cx="14" cy="16" r="4" fill="#ca8a04" />
+      </svg>
+    ),
+  },
+];
+
+const categoryTabs = [
+  {
+    key: "Math",
+    label: "Math",
+    activeClass:
+      "bg-linear-to-r from-white to-[#d6e4ff] text-[#0f1115] shadow-lg shadow-blue-500/20",
+  },
+  {
+    key: "ComputerScience",
+    label: "Computer Science",
+    activeClass:
+      "bg-linear-to-r from-white to-[#ebd6ff] text-[#0f1115] shadow-lg shadow-purple-500/20",
+  },
+  {
+    key: "DataAnalysis",
+    label: "Data Analysis",
+    activeClass:
+      "bg-linear-to-r from-white to-[#ffe0cf] text-[#0f1115] shadow-lg shadow-orange-500/20",
+  },
+  {
+    key: "Science",
+    label: "Science",
+    activeClass:
+      "bg-linear-to-r from-white to-[#fff0cc] text-[#0f1115] shadow-lg shadow-yellow-500/20",
+  },
+];
+
+const footerLinksData = [
+  {
+    title: "Product",
+    links: ["Courses", "Pricing", "Gift Brilliant", "Help"],
+  },
+  {
+    title: "Company",
+    links: ["About us", "Careers", "Educators"],
+  },
+];
+
+const footerBehindScenesData = [
+  ["AI at Brilliant", "AI Tools for Games", "Solving Equations"],
+  ["Thinking in Code", "Visual Algebra", "Decomposition"],
+];
+
+const footerBottomLinks = ["Terms", "Privacy", "Cookies", "California"];
+
 export function App() {
   const [activeCategory, setActiveCategory] = useState<
     "Math" | "ComputerScience" | "DataAnalysis" | "Science"
@@ -291,112 +408,19 @@ export function App() {
           <div className="w-full border-t border-gray-100 bg-white relative">
             <div className="max-w-7xl mx-auto px-4 h-20 flex justify-center items-center overflow-x-auto hide-scrollbar">
               <div className="flex justify-between items-center w-full max-w-5xl min-w-[700px] gap-4">
-                <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]">
-                  <div className="w-6 h-6 flex items-center justify-center text-blue-500">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      width="20"
-                      height="20"
+                {heroNavItems.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]"
+                  >
+                    <div
+                      className={`w-6 h-6 flex items-center justify-center ${item.textColor}`}
                     >
-                      <rect
-                        x="2"
-                        y="10"
-                        width="10"
-                        height="10"
-                        fill="#60a5fa"
-                        rx="1"
-                      />
-                      <rect
-                        x="12"
-                        y="2"
-                        width="10"
-                        height="10"
-                        fill="#3b82f6"
-                        rx="1"
-                      />
-                      <path d="M12 12 L22 12" stroke="white" strokeWidth="2" />
-                      <path d="M12 2 L12 12" stroke="white" strokeWidth="2" />
-                    </svg>
+                      {item.icon}
+                    </div>
+                    {item.label}
                   </div>
-                  Math
-                </div>
-
-                <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]">
-                  <div className="w-6 h-6 flex items-center justify-center text-purple-500">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      width="20"
-                      height="20"
-                    >
-                      <path
-                        d="M4 8 L20 8 M4 16 L20 16"
-                        stroke="#9333ea"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                      />
-                      <circle cx="8" cy="8" r="3" fill="#c084fc" />
-                      <circle cx="16" cy="16" r="3" fill="#a855f7" />
-                    </svg>
-                  </div>
-                  Computer Science
-                </div>
-
-                <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]">
-                  <div className="w-6 h-6 flex items-center justify-center text-indigo-500">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      width="20"
-                      height="20"
-                    >
-                      <circle cx="12" cy="6" r="4" fill="#818cf8" />
-                      <circle cx="6" cy="18" r="4" fill="#6366f1" />
-                      <circle cx="18" cy="18" r="4" fill="#a5b4fc" />
-                      <path
-                        d="M12 10 L6 14 M12 10 L18 14"
-                        stroke="#818cf8"
-                        strokeWidth="2"
-                      />
-                    </svg>
-                  </div>
-                  Coding & AI
-                </div>
-
-                <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]">
-                  <div className="w-6 h-6 flex items-center justify-center text-red-400">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      width="20"
-                      height="20"
-                    >
-                      <path
-                        d="M2 20 L8 10 L14 16 L22 4"
-                        fill="none"
-                        stroke="#f87171"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <circle cx="8" cy="10" r="2.5" fill="#fca5a5" />
-                      <circle cx="14" cy="16" r="2.5" fill="#ef4444" />
-                    </svg>
-                  </div>
-                  Data Analysis
-                </div>
-
-                <div className="flex items-center gap-3 hover:opacity-70 transition-opacity cursor-pointer text-[18px] font-medium text-[#1c1d1f]">
-                  <div className="w-6 h-6 flex items-center justify-center text-yellow-500">
-                    <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
-                      <circle cx="8" cy="12" r="5" fill="#eab308" />
-                      <circle cx="16" cy="8" r="4" fill="#facc15" />
-                      <circle cx="14" cy="16" r="4" fill="#ca8a04" />
-                    </svg>
-                  </div>
-                  Science & Engineering
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -581,30 +605,19 @@ export function App() {
             Reach big learning goals
           </h2>
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <button
-              onClick={() => setActiveCategory("Math")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === "Math" ? "bg-purple-500 shadow-lg shadow-purple-500/20" : "bg-gray-800 hover:bg-gray-700 hover:text-white text-gray-300"}`}
-            >
-              Math
-            </button>
-            <button
-              onClick={() => setActiveCategory("ComputerScience")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === "ComputerScience" ? "bg-purple-500 shadow-lg shadow-purple-500/20" : "bg-gray-800 hover:bg-gray-700 hover:text-white text-gray-300"}`}
-            >
-              Computer Science
-            </button>
-            <button
-              onClick={() => setActiveCategory("DataAnalysis")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === "DataAnalysis" ? "bg-purple-500 shadow-lg shadow-purple-500/20" : "bg-gray-800 hover:bg-gray-700 hover:text-white text-gray-300"}`}
-            >
-              Data Analysis
-            </button>
-            <button
-              onClick={() => setActiveCategory("Science")}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === "Science" ? "bg-purple-500 shadow-lg shadow-purple-500/20" : "bg-gray-800 hover:bg-gray-700 hover:text-white text-gray-300"}`}
-            >
-              Science
-            </button>
+            {categoryTabs.map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveCategory(tab.key as any)}
+                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${
+                  activeCategory === tab.key
+                    ? tab.activeClass
+                    : "bg-white/10 hover:bg-white/20 hover:text-white text-gray-300"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
           <div className="grid md:grid-cols-2 bg-[#2d2d2d] rounded-4xl overflow-hidden text-left shadow-2xl border border-white/5 transition-all duration-300">
             <div className="p-12 md:p-16">
@@ -889,94 +902,44 @@ export function App() {
                 Brilliant
               </span>
             </div>
-            <div>
-              <h4 className="text-white font-bold mb-8 text-sm uppercase tracking-wider">
-                Product
-              </h4>
-              <ul className="space-y-4 text-sm font-medium">
-                <li>
-                  <a className="hover:text-white transition-colors" href="#">
-                    Courses
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white transition-colors" href="#">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white transition-colors" href="#">
-                    Gift Brilliant
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white transition-colors" href="#">
-                    Help
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-8 text-sm uppercase tracking-wider">
-                Company
-              </h4>
-              <ul className="space-y-4 text-sm font-medium">
-                <li>
-                  <a className="hover:text-white transition-colors" href="#">
-                    About us
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white transition-colors" href="#">
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-white transition-colors" href="#">
-                    Educators
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {footerLinksData.map((section, idx) => (
+              <div key={idx}>
+                <h4 className="text-white font-bold mb-8 text-sm uppercase tracking-wider">
+                  {section.title}
+                </h4>
+                <ul className="space-y-4 text-sm font-medium">
+                  {section.links.map((link, linkIdx) => (
+                    <li key={linkIdx}>
+                      <a
+                        className="hover:text-white transition-colors"
+                        href="#"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
             <div className="col-span-2 lg:col-span-2">
               <h4 className="text-white font-bold mb-8 text-sm uppercase tracking-wider">
                 Behind the scenes
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm font-medium">
-                <ul className="space-y-4">
-                  <li>
-                    <a className="hover:text-white transition-colors" href="#">
-                      AI at Brilliant
-                    </a>
-                  </li>
-                  <li>
-                    <a className="hover:text-white transition-colors" href="#">
-                      AI Tools for Games
-                    </a>
-                  </li>
-                  <li>
-                    <a className="hover:text-white transition-colors" href="#">
-                      Solving Equations
-                    </a>
-                  </li>
-                </ul>
-                <ul className="space-y-4">
-                  <li>
-                    <a className="hover:text-white transition-colors" href="#">
-                      Thinking in Code
-                    </a>
-                  </li>
-                  <li>
-                    <a className="hover:text-white transition-colors" href="#">
-                      Visual Algebra
-                    </a>
-                  </li>
-                  <li>
-                    <a className="hover:text-white transition-colors" href="#">
-                      Decomposition
-                    </a>
-                  </li>
-                </ul>
+                {footerBehindScenesData.map((col, colIdx) => (
+                  <ul key={colIdx} className="space-y-4">
+                    {col.map((link, linkIdx) => (
+                      <li key={linkIdx}>
+                        <a
+                          className="hover:text-white transition-colors"
+                          href="#"
+                        >
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
               </div>
             </div>
           </div>
@@ -1008,18 +971,15 @@ export function App() {
               </a>
             </div>
             <div className="flex flex-wrap justify-center gap-6 text-[10px] uppercase font-bold tracking-[0.2em] text-gray-600">
-              <a className="hover:text-white transition-colors" href="#">
-                Terms
-              </a>
-              <a className="hover:text-white transition-colors" href="#">
-                Privacy
-              </a>
-              <a className="hover:text-white transition-colors" href="#">
-                Cookies
-              </a>
-              <a className="hover:text-white transition-colors" href="#">
-                California
-              </a>
+              {footerBottomLinks.map((link, idx) => (
+                <a
+                  key={idx}
+                  className="hover:text-white transition-colors"
+                  href="#"
+                >
+                  {link}
+                </a>
+              ))}
               <span className="text-gray-700">
                 © 2024 Brilliant Worldwide, Inc.
               </span>
