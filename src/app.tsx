@@ -159,7 +159,7 @@ export function App() {
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           {/* Custom "Learn by doing" Graphic Layout */}
-          <div className="relative w-full max-w-[800px] h-auto aspect-[2/1] mb-12 flex items-center justify-center select-none">
+          <div className="relative w-full max-w-[800px] h-auto aspect-2/1 mb-12 flex items-center justify-center select-none">
             {/* Background Grid Lines */}
             <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
               <div className="w-full h-px bg-gray-400 absolute top-[30%] left-0"></div>
@@ -185,7 +185,7 @@ export function App() {
             </div>
 
             {/* Hover Tooltips (between words) */}
-            <div className="absolute left-[38%] top-[55%] z-20 flex flex-col items-start gap-1 transform -translate-y-1/2 rotate-[-2deg]">
+            <div className="absolute left-[29%] top-[73%] z-20 flex flex-col items-start gap-1 transform -translate-y-1/2 -rotate-2">
               <div className="bg-white border text-blue-500 text-[10px] font-mono font-bold px-2 py-0.5 rounded-sm shadow-sm opacity-80 border-blue-100 flex items-center gap-1">
                 <Zap size={10} /> while{" "}
                 <span className="text-blue-200">learning ▾</span>
@@ -264,7 +264,7 @@ export function App() {
             </div>
 
             {/* Main Text Elements */}
-            <h1 className="text-[9.5rem] font-bold text-black leading-[0.85] relative z-10 font-serif tracking-tight flex flex-col items-center">
+            <h1 className="text-[9.5rem] font-thin text-black leading-[0.85] relative z-10 font-serif tracking-tight flex flex-col items-center">
               <div className="flex items-center relative">
                 Learn
                 {/* Orange Dots */}
@@ -272,7 +272,7 @@ export function App() {
                 <div className="w-3.5 h-3.5 bg-[#f5a171] rounded-full absolute -right-1.5 bottom-8 z-20"></div>
               </div>
               <div className="flex items-center">
-                by doing
+                by <span className={"w-30 h-2.5"}></span> doing
                 <span className="text-[#3b82f6] text-[5rem] translate-y-2">
                   .
                 </span>
