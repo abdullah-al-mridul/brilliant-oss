@@ -59,7 +59,7 @@ export function App() {
     "Math" | "ComputerScience" | "DataAnalysis" | "Science"
   >("ComputerScience");
 
-  const getCodeSnippet = (category) => {
+  const getCodeSnippet = (category: any) => {
     switch (category) {
       case "ComputerScience":
         return (
@@ -176,7 +176,7 @@ export function App() {
               <div className="absolute top-0 right-1/4 w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-[10px] font-bold text-purple-600 rotate-12 hover:rotate-0 transition-transform cursor-default shadow-sm">
                 25%
               </div>
-              <div className="absolute bottom-10 left-1/4 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 float-anim border border-blue-200 shadow-sm bg-white hover:scale-110 transition-transform">
+              <div className="absolute bottom-10 left-1/4 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 float-anim border border-blue-200 shadow-sm  hover:scale-110 transition-transform">
                 <CheckCircle2 size={16} strokeWidth={3} />
               </div>
             </div>
@@ -413,7 +413,7 @@ export function App() {
               Science
             </button>
           </div>
-          <div className="grid md:grid-cols-2 bg-[#2d2d2d] rounded-[2rem] overflow-hidden text-left shadow-2xl border border-white/5 transition-all duration-300">
+          <div className="grid md:grid-cols-2 bg-[#2d2d2d] rounded-4xl overflow-hidden text-left shadow-2xl border border-white/5 transition-all duration-300">
             <div className="p-12 md:p-16">
               <h3 className="text-2xl font-bold mb-8 font-serif transition-colors">
                 {activeCategory === "ComputerScience"
@@ -672,7 +672,7 @@ export function App() {
             <div className="w-10 md:w-14 h-32 bg-red-400 rounded-t-full transition-transform duration-500 delay-200 group-hover:-translate-y-4 shadow-xl"></div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-black to-transparent pointer-events-none"></div>
       </section>
       {/* END: Final CTA */}
 
