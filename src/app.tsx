@@ -468,7 +468,10 @@ export function App() {
       {/* END: Social Proof */}
 
       {/* BEGIN: Concepts that click */}
-      <section className="py-24 bg-[#f1f9fc]" data-purpose="feature-concepts">
+      <section
+        className="py-24 bg-linear-to-b from-[#f3f9f8] to-[#e4f2f0]"
+        data-purpose="feature-concepts"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1 relative group cursor-pointer">
@@ -507,7 +510,10 @@ export function App() {
       {/* END: Concepts that click */}
 
       {/* BEGIN: Personalized learning */}
-      <section className="py-24 bg-white" data-purpose="feature-personalized">
+      <section
+        className="py-24 bg-linear-to-b from-[#fdfbff] to-[#faf8ff]"
+        data-purpose="feature-personalized"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
@@ -552,7 +558,10 @@ export function App() {
       {/* END: Personalized learning */}
 
       {/* BEGIN: Guided lessons */}
-      <section className="py-24 bg-[#f8f6ff]" data-purpose="feature-guided">
+      <section
+        className="py-24 bg-linear-to-b from-[#f7f2fb] to-[#f4ebfa]"
+        data-purpose="feature-guided"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative flex justify-center group cursor-pointer">
@@ -586,7 +595,7 @@ export function App() {
 
       {/* BEGIN: Reach big learning goals */}
       <section
-        className="py-24 bg-[#1b1b1b] text-white"
+        className="py-24 bg-linear-to-b from-[#1b1c1b] via-[#242926] to-[#2f352e] text-white"
         data-purpose="course-categories"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -683,7 +692,10 @@ export function App() {
       {/* END: Reach big learning goals */}
 
       {/* BEGIN: Stay motivated */}
-      <section className="py-24 bg-[#f1fcf4]" data-purpose="motivation-section">
+      <section
+        className="py-24 bg-linear-to-b from-[#f2fcf2] to-[#e9f8ed]"
+        data-purpose="motivation-section"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
@@ -738,7 +750,10 @@ export function App() {
       {/* END: Stay motivated */}
 
       {/* BEGIN: More effective, more fun */}
-      <section className="py-24 bg-white" data-purpose="feature-fun">
+      <section
+        className="py-24 bg-linear-to-b from-[#f0f9f8] to-[#e6f4f4]"
+        data-purpose="feature-fun"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative order-2 md:order-1 group cursor-pointer">
@@ -826,7 +841,7 @@ export function App() {
 
       {/* BEGIN: Final CTA */}
       <section
-        className="py-24 bg-[#0a0a0a] text-white text-center relative overflow-hidden"
+        className="py-24 bg-linear-to-b from-[#1c1b1a] via-[#1a1b18] to-[#141513] text-white text-center relative overflow-hidden"
         data-purpose="final-cta"
       >
         <div className="max-w-4xl mx-auto px-4 relative z-10">
