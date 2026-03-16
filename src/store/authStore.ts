@@ -25,7 +25,11 @@ export const setUser = (user: Models.User<Models.Preferences> | null) => {
 export const setAuthLoading = (isLoading: boolean) => {
   authStore.setState((state) => ({
     ...state,
-    status: isLoading ? "loading" : state.user ? "authenticated" : "unauthenticated",
+    status: isLoading
+      ? "loading"
+      : state.user
+        ? "authenticated"
+        : "unauthenticated",
   }));
 };
 
@@ -62,7 +66,7 @@ export const loginWithGoogle = async () => {
     await account.createOAuth2Session(
       OAuthProvider.Google,
       window.location.origin + "/home",
-      window.location.origin + "/"
+      window.location.origin + "/",
     );
   } catch (err: any) {
     setAuthError(err.message || "Failed to login with Google");
@@ -85,7 +89,11 @@ export const loginWithEmail = async (email: string, pass: string) => {
   }
 };
 
-export const signupWithEmail = async (email: string, pass: string, name: string) => {
+export const signupWithEmail = async (
+  email: string,
+  pass: string,
+  name: string,
+) => {
   setAuthError(null);
   setAuthLoading(true);
   try {
