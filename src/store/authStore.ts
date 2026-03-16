@@ -1,5 +1,5 @@
 import { Store } from "@tanstack/store";
-import { account } from "@/lib/appwrite";
+import { account, ID } from "@/lib/appwrite";
 import { OAuthProvider, type Models } from "appwrite";
 
 interface AuthState {
@@ -37,11 +37,19 @@ export const setAuthError = (error: string | null) => {
 };
 
 export const checkSession = async () => {
+  console.log("Auth: Checking session...");
   setAuthLoading(true);
   try {
     const user = await account.get();
+    console.log("Auth: Session found:", user.email);
     setUser(user);
   } catch (err: any) {
+    console.group("Auth: Session check failed");
+    console.log("Message:", err.message);
+    console.log("Code:", err.code);
+    console.log("Type:", err.type);
+    console.log("Full Error:", err);
+    console.groupEnd();
     setUser(null);
   } finally {
     setAuthLoading(false);
@@ -49,6 +57,7 @@ export const checkSession = async () => {
 };
 
 export const loginWithGoogle = async () => {
+  setAuthError(null);
   try {
     await account.createOAuth2Session(
       OAuthProvider.Google,
@@ -60,11 +69,45 @@ export const loginWithGoogle = async () => {
   }
 };
 
+export const loginWithEmail = async (email: string, pass: string) => {
+  setAuthError(null);
+  setAuthLoading(true);
+  try {
+    await account.createEmailPasswordSession(email, pass);
+    const user = await account.get();
+    setUser(user);
+    return { success: true };
+  } catch (err: any) {
+    setAuthError(err.message || "Email login failed");
+    return { success: false, error: err.message };
+  } finally {
+    setAuthLoading(false);
+  }
+};
+
+export const signupWithEmail = async (email: string, pass: string, name: string) => {
+  setAuthError(null);
+  setAuthLoading(true);
+  try {
+    await account.create(ID.unique(), email, pass, name);
+    await account.createEmailPasswordSession(email, pass);
+    const user = await account.get();
+    setUser(user);
+    return { success: true };
+  } catch (err: any) {
+    setAuthError(err.message || "Signup failed");
+    return { success: false, error: err.message };
+  } finally {
+    setAuthLoading(false);
+  }
+};
+
 export const logout = async () => {
+  setAuthError(null);
   try {
     await account.deleteSession("current");
     setUser(null);
   } catch (err: any) {
-    setAuthError(err.message || "Failed to logout");
+    setAuthError(err.message || "Logout failed");
   }
 };

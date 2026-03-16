@@ -21,10 +21,14 @@ function RootComponent() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
+    console.log("Root: Initializing Appwrite...");
     // Verify Appwrite connection
-    client.ping().catch(console.error);
+    client.ping()
+      .then(() => console.log("Root: Appwrite Ping Success"))
+      .catch(err => console.error("Root: Appwrite Ping Failed", err));
     
     // Check for existing session
+    console.log("Root: Checking session...");
     checkSession();
 
     const handleScroll = () => {

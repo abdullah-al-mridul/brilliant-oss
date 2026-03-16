@@ -30,7 +30,9 @@ function Index() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    console.log("Index: Auth status changed ->", status);
     if (status === 'authenticated') {
+      console.log("Index: Redirecting to /home...");
       navigate({ to: '/home' })
     }
   }, [status, navigate])

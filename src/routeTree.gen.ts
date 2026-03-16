@@ -9,32 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as HomeRouteImport } from './routes/home'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as HomeRouteRouteImport } from './routes/home/route'
+import { Route as IndexRouteRouteImport } from './routes/index/route'
 
-const HomeRoute = HomeRouteImport.update({
+const HomeRouteRoute = HomeRouteRouteImport.update({
   id: '/home',
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const IndexRouteRoute = IndexRouteRouteImport.update({
   id: '/',
-  path: '/',
+  path: '',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/home': typeof HomeRoute
+  '/': typeof IndexRouteRoute
+  '/home': typeof HomeRouteRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/home': typeof HomeRoute
+  '/': typeof IndexRouteRoute
+  '/home': typeof HomeRouteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/home': typeof HomeRoute
+  '/': typeof IndexRouteRoute
+  '/home': typeof HomeRouteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -45,8 +45,8 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  HomeRoute: typeof HomeRoute
+  IndexRouteRoute: typeof IndexRouteRoute
+  HomeRouteRoute: typeof HomeRouteRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -55,22 +55,22 @@ declare module '@tanstack/react-router' {
       id: '/home'
       path: '/home'
       fullPath: '/home'
-      preLoaderRoute: typeof HomeRouteImport
+      preLoaderRoute: typeof HomeRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
       id: '/'
-      path: '/'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof IndexRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  HomeRoute: HomeRoute,
+  IndexRouteRoute: IndexRouteRoute,
+  HomeRouteRoute: HomeRouteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
