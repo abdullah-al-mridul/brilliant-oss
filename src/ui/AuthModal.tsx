@@ -1,4 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
+import { loginWithGoogle, authStore } from "@/store/authStore";
+import { useStore } from "@tanstack/preact-store";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -7,6 +9,8 @@ interface AuthModalProps {
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const { status, error } = useStore(authStore);
+  const isLoading = status === "loading";
 
   useEffect(() => {
     if (isOpen) {
@@ -59,8 +63,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         <h2 className="text-3xl font-bold text-gray-900 mb-8">Sign in</h2>
 
         <div className="w-full space-y-3">
+          {error && (
+            <div className="p-3 mb-4 bg-red-50 text-red-600 text-sm font-medium rounded-2xl">
+              {error}
+            </div>
+          )}
+
           {/* Google Button */}
-          <button className="w-full py-3 px-4 bg-white border border-gray-200 rounded-full flex items-center justify-center gap-3 font-bold text-gray-700 shadow-[0_3px_0_0_#E5E7EB] hover:shadow-[0_1.5px_0_0_#E5E7EB] hover:translate-y-[1.5px] active:shadow-none active:translate-y-[3px] transition-all cursor-pointer">
+          <button 
+            disabled={isLoading}
+            onClick={() => loginWithGoogle()}
+            className={`w-full py-3 px-4 bg-white border border-gray-200 rounded-full flex items-center justify-center gap-3 font-bold text-gray-700 shadow-[0_3px_0_0_#E5E7EB] hover:shadow-[0_1.5px_0_0_#E5E7EB] hover:translate-y-[1.5px] active:shadow-none active:translate-y-[3px] transition-all cursor-pointer ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
             <svg viewBox="0 0 24 24" width="20" height="20">
 
               <path

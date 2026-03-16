@@ -6,7 +6,10 @@ import { FooterSection } from '@/sections/Footer'
 import { AuthModal } from '@/ui/AuthModal'
 import { useStore } from '@tanstack/preact-store'
 import { uiStore, setAuthModalOpen } from '@/store/uiStore'
+import { authStore } from '@/store/authStore'
 import { useState, useEffect } from 'preact/hooks'
+import { client } from '@/lib/appwrite'
+import { checkSession } from '@/store/authStore'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -14,9 +17,16 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   const { isAuthModalOpen } = useStore(uiStore)
+  const { status } = useStore(authStore)
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
+    // Verify Appwrite connection
+    client.ping().catch(console.error);
+    
+    // Check for existing session
+    checkSession();
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
@@ -29,6 +39,7 @@ function RootComponent() {
       <Header
         isScrolled={isScrolled}
         onSignInClick={() => setAuthModalOpen(true)}
+        isAuthenticated={status === 'authenticated'}
       />
       <Outlet />
       <FooterSection />

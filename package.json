@@ -17,6 +17,7 @@
     "@tanstack/react-router": "^1.167.3",
     "@tanstack/router-devtools": "^1.166.9",
     "@tanstack/store": "^0.9.2",
+    "appwrite": "^23.0.0",
     "lucide-preact": "^0.577.0",
     "preact": "^10.28.4",
     "tailwindcss": "^4.2.1"
