@@ -1,7 +1,7 @@
 export const footerLinksData = [
   {
     title: "Product",
-    links: ["Courses", "Pricing", "Gift Brilliant", "Help"],
+    links: ["Courses", "Pricing", "Help"],
   },
   {
     title: "Company",
@@ -10,7 +10,7 @@ export const footerLinksData = [
 ];
 
 export const footerBehindScenesData = [
-  ["AI at Brilliant", "AI Tools for Games", "Solving Equations"],
+  ["AI Tools for Games", "Solving Equations"],
   ["Thinking in Code", "Visual Algebra", "Decomposition"],
 ];
 

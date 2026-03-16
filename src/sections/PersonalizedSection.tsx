@@ -13,7 +13,7 @@ export function PersonalizedSection() {
               Personalized learning
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Brilliant tracks the concepts you've mastered, designs practice
+              BrilliantOSS tracks the concepts you've mastered, designs practice
               sets based on your progress, and adapts to your pace.
             </p>
           </div>

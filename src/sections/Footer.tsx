@@ -15,7 +15,7 @@ export function FooterSection() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-20">
           <div className="col-span-2 lg:col-span-1">
             <span className="text-2xl font-bold text-white block mb-8 hover:text-blue-400 transition-colors cursor-pointer w-max">
-              Brilliant
+              BrilliantOSS
             </span>
           </div>
           {footerLinksData.map((section, idx) => (
@@ -93,9 +93,7 @@ export function FooterSection() {
                 {link}
               </a>
             ))}
-            <span className="text-gray-700">
-              © 2024 Brilliant Worldwide, Inc.
-            </span>
+            <span className="text-gray-700">© 2024 BrilliantOSS, Inc.</span>
           </div>
         </div>
       </div>

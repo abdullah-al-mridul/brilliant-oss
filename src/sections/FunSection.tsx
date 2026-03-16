@@ -60,7 +60,7 @@ export function FunSection() {
               more fun
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Brilliant's interactive approach helps you master concepts in
+              BrilliantOSS's interactive approach helps you master concepts in
               less time, with more purpose and joy.
             </p>
           </div>

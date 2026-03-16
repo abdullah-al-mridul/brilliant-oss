@@ -41,6 +41,9 @@ importers:
       preact:
         specifier: ^10.28.4
         version: 10.29.0
+      swiper:
+        specifier: ^12.1.2
+        version: 12.1.2
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
@@ -1178,6 +1181,10 @@ packages:
     resolution: {integrity: sha512-2ztBJRek8IVofG9DBJqdy2N5kulaacX30Nz7xmkYF6ale9WBVmIy6mFBchvGX7Vx/MyjBhx+Rcxqrj+dbOnQ6A==}
     engines: {node: '>=16'}
 
+  swiper@12.1.2:
+    resolution: {integrity: sha512-4gILrI3vXZqoZh71I1PALqukCFgk+gpOwe1tOvz5uE9kHtl2gTDzmYflYCwWvR4LOvCrJi6UEEU+gnuW5BtkgQ==}
+    engines: {node: '>= 4.7.0'}
+
   tailwindcss@4.2.1:
     resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
 
@@ -2279,6 +2286,8 @@ snapshots:
   source-map@0.7.6: {}
 
   stack-trace@1.0.0-pre2: {}
+
+  swiper@12.1.2: {}
 
   tailwindcss@4.2.1: {}
 
