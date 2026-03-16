@@ -11,12 +11,14 @@ import { FunSection } from "./sections/FunSection";
 import { ContributorSection } from "./sections/ContributorSection";
 import { FinalCTA } from "./sections/FinalCTA";
 import { FooterSection } from "./sections/Footer";
+import { AuthModal } from "./ui/AuthModal";
 
 export function App() {
   const [activeCategory, setActiveCategory] = useState<
     "Math" | "ComputerScience" | "DataAnalysis" | "Science"
   >("ComputerScience");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +30,10 @@ export function App() {
 
   return (
     <main className="bg-white text-gray-900 antialiased relative">
-      <Header isScrolled={isScrolled} />
+      <Header
+        isScrolled={isScrolled}
+        onSignInClick={() => setIsAuthModalOpen(true)}
+      />
       <Hero />
       <SocialProof />
       <ConceptsSection />
@@ -43,6 +48,12 @@ export function App() {
       <ContributorSection />
       <FinalCTA />
       <FooterSection />
+
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </main>
   );
 }
+
