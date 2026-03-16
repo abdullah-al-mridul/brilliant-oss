@@ -1,4 +1,4 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { PreactQueryDevtools } from '@tanstack/preact-query-devtools'
 import { Header } from '@/sections/Header'
@@ -19,6 +19,8 @@ function RootComponent() {
   const { isAuthModalOpen } = useStore(uiStore)
   const { status } = useStore(authStore)
   const [isScrolled, setIsScrolled] = useState(false)
+  const location = useLocation()
+  const isAppPage = location.pathname === '/home'
 
   useEffect(() => {
     console.log("Root: Initializing Appwrite...");
@@ -46,7 +48,7 @@ function RootComponent() {
         isAuthenticated={status === 'authenticated'}
       />
       <Outlet />
-      <FooterSection />
+      {!isAppPage && <FooterSection />}
       
       <AuthModal
         isOpen={isAuthModalOpen}
