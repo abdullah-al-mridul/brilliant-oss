@@ -5,7 +5,7 @@ interface HeaderProps {
 }
 
 import { logout } from "@/store/authStore";
-import { Home, BookOpen, Shield, Zap, Menu } from "lucide-preact";
+import { Home, BookOpen, Zap, Menu } from "lucide-preact";
 
 export function Header({
   isScrolled,
