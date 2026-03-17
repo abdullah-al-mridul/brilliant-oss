@@ -41,19 +41,12 @@ export function Header({
         <div className="flex items-center gap-3">
           {isAuthenticated ? (
             <>
-              <button className="hidden md:block px-5 py-2 bg-white border border-gray-200 text-gray-900 rounded-full font-bold text-sm shadow-[0_2px_0_0_#E5E7EB] hover:shadow-none hover:translate-y-px transition-all cursor-pointer">
-                Go Premium
+              <button
+                className="hidden md:block px-5 py-2 bg-white border border-gray-200 text-gray-900 rounded-full font-bold text-sm transition-all cursor-pointer disabled:opacity-50"
+                disabled
+              >
+                Go Premium, Haha!
               </button>
-
-              {/* Stats */}
-              <div className="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1 bg-white shadow-xs">
-                <span className="font-bold text-gray-900 text-sm">2</span>
-                <Shield
-                  size={16}
-                  fill="currentColor"
-                  className="text-yellow-500"
-                />
-              </div>
 
               <div className="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1 bg-white shadow-xs">
                 <span className="font-bold text-gray-200 text-sm">0</span>
@@ -69,7 +62,7 @@ export function Header({
             </>
           ) : (
             <button
-              onClick={onSignInClick}
+              // onClick={onSignInClick}
               className="px-6 py-2 text-[15px] font-bold text-gray-700 bg-white border border-gray-200 shadow-[0_3px_0_0_#E5E7EB] hover:shadow-[0_1.5px_0_0_#E5E7EB] hover:translate-y-[1.5px] active:shadow-none active:translate-y-[3px] rounded-full transition-all cursor-pointer"
             >
               Sign in

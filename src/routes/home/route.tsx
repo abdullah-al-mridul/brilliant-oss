@@ -7,6 +7,7 @@ import { EffectCards } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import ArithmaticIMG from "@/assets/graphics/courses/arithmatic-thinking/1.png";
 import { hexToRgba } from "@/utils/color-converter";
+import { Gem } from "lucide-preact";
 
 export const Route = createFileRoute("/home" as any)({
   beforeLoad: () => {
@@ -129,47 +130,21 @@ const PremiumCard = () => (
     <div className="relative z-10 flex flex-col items-start w-full">
       <div className="flex items-center gap-3 w-full mb-4">
         <div className="w-12 h-10 bg-linear-to-r from-purple-500 via-pink-500 to-orange-500 rounded-lg flex items-center justify-center text-white shrink-0">
-          <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
+          <Gem />
         </div>
         <div className="flex-1">
           <h3 className="text-[13px] font-bold text-gray-900 leading-tight mb-0.5">
             Unlock all learning with Premium
           </h3>
-          <p className="text-xs text-gray-600">to get smarter, faster</p>
+          <p className="text-xs text-gray-600">
+            This is an open-source project, so no premium is required.
+          </p>
         </div>
       </div>
-      <button className="w-full py-2.5 rounded-full bg-linear-to-r from-indigo-400 via-purple-400 to-amber-400 text-gray-900 font-bold text-sm hover:opacity-90 transition-opacity shadow-sm">
-        Explore Premium
+      <button className="w-full py-2.5 rounded-full bg-linear-to-r from-indigo-400 via-purple-400 to-amber-400 text-gray-900 font-bold text-sm hover:opacity-90 cursor-pointer transition-opacity shadow-sm">
+        Premium? Haha!
       </button>
     </div>
-  </div>
-);
-
-const LeagueCard = () => (
-  <div className="border border-gray-200 rounded-2xl p-10 bg-white text-center shadow-sm">
-    <div className="flex justify-center mb-6">
-      <div className="w-16 h-16 relative">
-        <svg viewBox="0 0 64 64" className="w-full h-full">
-          <path
-            d="M32 4L54 12V32C54 48 32 60 32 60C32 60 10 48 10 32V12L32 4Z"
-            fill="#B45309"
-          />
-          <circle cx="32" cy="32" r="10" fill="#FDE68A" fillOpacity="0.3" />
-          <path d="M32 24 L28 32 L32 40 L36 32 Z" fill="#FBBF24" />
-        </svg>
-      </div>
-    </div>
-    <h3 className="text-xl font-black text-gray-900 mb-2">
-      Ready to bounce back?
-    </h3>
-    <p className="text-sm text-gray-500 font-medium mb-10 leading-relaxed px-4">
-      You finished #26 and kept your spot in the Hydrogen League
-    </p>
-    <button className="w-full py-3.5 rounded-full border border-gray-200 font-black text-gray-900 hover:bg-gray-50 shadow-[0_3px_0_0_#F3F4F6] hover:shadow-none hover:translate-y-px transition-all cursor-pointer text-sm">
-      Continue
-    </button>
   </div>
 );
 
@@ -193,7 +168,7 @@ function HomeComponent() {
         <aside className="w-full lg:w-[325px] shrink-0 space-y-5">
           <StreakCard />
           <PremiumCard />
-          <LeagueCard />
+          {/* <LeagueCard /> */}
         </aside>
 
         {/* Lesson Section */}

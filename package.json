@@ -19,6 +19,7 @@
     "@tanstack/store": "^0.9.2",
     "appwrite": "^23.0.0",
     "lucide-preact": "^0.577.0",
+    "lucide-react": "^0.577.0",
     "preact": "^10.28.4",
     "swiper": "^12.1.2",
     "tailwindcss": "^4.2.1"
