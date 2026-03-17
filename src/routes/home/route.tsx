@@ -310,7 +310,7 @@ function HomeComponent() {
                   }}
                 >
                   <div
-                    className={`w-full h-full rounded-xl flex items-center justify-center ${isActive ? "" : "opacity-70"}`}
+                    className={`w-full h-full rounded-xl flex items-center justify-center ${isActive ? "" : ""}`}
                   >
                     <div className="w-10 h-10">
                       <img
