@@ -103,3 +103,19 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.swiper-slide-shadow {
+  display: none !important;
+}
+
+.btn-custom {
+  box-shadow: 0 4px 0 0 var(--shadow-color);
+}
+
+.btn-custom:hover {
+  box-shadow: 0 2px 0 0 var(--shadow-hover);
+}
+
+.btn-custom:active {
+  box-shadow: 0 0 0 0 transparent;
+}
