@@ -7,7 +7,7 @@ import { EffectCards } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import ArithmaticIMG from "@/assets/graphics/courses/arithmatic-thinking/1.png";
 import { hexToRgba } from "@/utils/color-converter";
-import { Gem } from "lucide-preact";
+import { Gem, Zap } from "lucide-preact";
 
 export const Route = createFileRoute("/home" as any)({
   beforeLoad: () => {
@@ -94,13 +94,7 @@ const StreakCard = () => (
     <div className="flex justify-between items-start mb-6">
       <div className="flex items-center gap-2">
         <span className="text-5xl font-extrabold text-gray-900">0</span>
-        <svg className="w-8 h-8 text-gray-100 fill-current" viewBox="0 0 24 24">
-          <path d="M13 10V3L4 14H11V21L20 10H13Z" />
-        </svg>
-      </div>
-      <div className="flex gap-1.5 pt-2">
-        <div className="w-3.5 h-5 bg-gray-50 border border-gray-100 rounded-[3px]"></div>
-        <div className="w-3.5 h-5 bg-gray-50 border border-gray-100 rounded-[3px]"></div>
+        <Zap size={32} fill="currentColor" className="text-yellow-500" />
       </div>
     </div>
     <p className="text-sm font-bold mb-8 text-gray-900 leading-tight">
@@ -110,12 +104,7 @@ const StreakCard = () => (
       {["T", "W", "Th", "F", "S"].map((day, i) => (
         <div key={i} className="flex flex-col items-center space-y-2.5">
           <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center">
-            <svg
-              className="w-5 h-5 text-gray-100 fill-current"
-              viewBox="0 0 24 24"
-            >
-              <path d="M13 10V3L4 14H11V21L20 10H13Z" />
-            </svg>
+            <Zap size={16} fill="currentColor" className="text-gray-300" />
           </div>
           <span className="text-[11px] font-bold text-gray-900">{day}</span>
         </div>
