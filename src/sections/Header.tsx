@@ -4,6 +4,7 @@ interface HeaderProps {
   isAuthenticated: boolean;
 }
 
+import { useState, useRef, useEffect } from "preact/hooks";
 import { logout } from "@/store/authStore";
 import { Home, BookOpen, Zap, Menu } from "lucide-preact";
 
@@ -12,6 +13,21 @@ export function Header({
   onSignInClick,
   isAuthenticated,
 }: HeaderProps) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   return (
     <header
       className={`border-b transition-all duration-300 fixed top-0 left-0 w-full z-50 ${isScrolled ? "bg-white/95 backdrop-blur-md border-gray-200 py-1.5 shadow-sm" : "bg-white border-gray-100 py-2.5"}`}
@@ -48,21 +64,54 @@ export function Header({
                 Go Premium, Haha!
               </button>
 
-              <div className="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1 bg-white shadow-xs">
-                <span className="font-bold text-gray-200 text-sm">0</span>
-                <Zap size={16} fill="currentColor" className="text-gray-100" />
+              <div className="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1 bg-white shadow-xs cursor-pointer">
+                <span className="font-bold text-gray-700 text-sm">0</span>
+                <Zap size={16} fill="currentColor" className="text-gray-700" />
               </div>
 
-              <button
-                onClick={() => logout()}
-                className="p-2 text-gray-900 hover:text-black transition-colors cursor-pointer"
-              >
-                <Menu size={20} strokeWidth={2.5} />
-              </button>
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="p-2 text-gray-900 hover:text-black transition-colors cursor-pointer"
+                >
+                  <Menu size={20} strokeWidth={2.5} />
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-3 w-48 bg-white border border-gray-100 rounded-xl shadow-[0_5px_20px_-5px_rgba(0,0,0,0.1)] py-1 z-50 animate-in fade-in zoom-in duration-200">
+                    {/* Popover Arrow */}
+                    <div className="absolute -top-1.5 right-3.5 w-3 h-3 bg-white border-t border-l border-gray-100 rotate-45" />
+
+                    <button className="w-full text-left px-5 py-3 text-[15px] font-medium text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer border-none">
+                      Settings
+                    </button>
+
+                    <div className="h-px bg-gray-100 mx-0" />
+
+                    <button className="w-full text-left px-5 py-3 text-[15px] font-medium text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer border-none">
+                      About
+                    </button>
+                    <button className="w-full text-left px-5 py-3 text-[15px] font-medium text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer border-none">
+                      Help
+                    </button>
+
+                    <div className="h-px bg-gray-100 mx-0" />
+
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsDropdownOpen(false);
+                      }}
+                      className="w-full text-left px-5 py-3 text-[15px] font-medium text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer border-none"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <button
-              // onClick={onSignInClick}
+              onClick={onSignInClick}
               className="px-6 py-2 text-[15px] font-bold text-gray-700 bg-white border border-gray-200 shadow-[0_3px_0_0_#E5E7EB] hover:shadow-[0_1.5px_0_0_#E5E7EB] hover:translate-y-[1.5px] active:shadow-none active:translate-y-[3px] rounded-full transition-all cursor-pointer"
             >
               Sign in
