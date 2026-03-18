@@ -11,6 +11,7 @@ import { authStore } from "@/store/authStore";
 import { useState, useEffect } from "preact/hooks";
 import { client } from "@/lib/appwrite";
 import { checkSession } from "@/store/authStore";
+import Lenis from "lenis";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -22,7 +23,7 @@ function RootComponent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
   const location = useLocation();
-  const isAppPage = location.pathname === "/home";
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     console.log("Root: Initializing Appwrite...");
@@ -49,6 +50,32 @@ function RootComponent() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 2,
+      touchMultiplier: 2,
+    });
+
+    let rafId: number;
+
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   const handleCloseDisclaimer = () => {
     localStorage.setItem("hasSeenDisclaimer", "true");
     setIsDisclaimerOpen(false);
@@ -62,7 +89,7 @@ function RootComponent() {
         isAuthenticated={status === "authenticated"}
       />
       <Outlet />
-      {!isAppPage && <FooterSection />}
+      {isHomePage && <FooterSection />}
 
       <AuthModal
         isOpen={isAuthModalOpen}
