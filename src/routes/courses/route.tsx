@@ -33,11 +33,11 @@ const COURSE_CATEGORIES = [
           {/* Base Layer */}
           <div className="absolute w-[80%] h-[40%] bg-[#5C2EB8] rounded blur-[2px] opacity-40 translate-y-3"></div>
           {/* Bottom Layer */}
-          <div className="absolute w-[85%] h-[55%] bg-[#6a42d8] rounded-xl transform -skew-x-[20deg] border-t border-[#8964e7]"></div>
+          <div className="absolute w-[85%] h-[55%] bg-[#6a42d8] rounded-xl transform -skew-x-20 border-t border-[#8964e7]"></div>
           {/* Middle Layer */}
-          <div className="absolute w-[85%] h-[55%] bg-[#8155ee] rounded-xl transform -skew-x-[20deg] -translate-y-[6px] border-t border-[#9f79ff]"></div>
+          <div className="absolute w-[85%] h-[55%] bg-[#8155ee] rounded-xl transform -skew-x-20 -translate-y-[6px] border-t border-[#9f79ff]"></div>
           {/* Top Layer */}
-          <div className="absolute w-[85%] h-[55%] bg-[#a276ff] rounded-xl transform -skew-x-[20deg] -translate-y-[12px] flex items-center justify-center border-t border-[#c0a2ff] shadow-[0_2px_4px_rgba(0,0,0,0.1)]"></div>
+          <div className="absolute w-[85%] h-[55%] bg-[#a276ff] rounded-xl transform -skew-x-20 -translate-y-[12px] flex items-center justify-center border-t border-[#c0a2ff] shadow-[0_2px_4px_rgba(0,0,0,0.1)]"></div>
         </div>
       </div>
     ),
@@ -78,8 +78,8 @@ const COURSE_CATEGORIES = [
     icon: (
       <div className="w-12 h-12 flex items-center justify-center shrink-0">
         <div className="relative w-full h-full flex items-center justify-end flex-col">
-          <div className="w-[85%] h-[40%] bg-[#DB7211] rounded-t-[10px] transform skew-y-[15deg] origin-bottom-left -ml-2 -mb-1 shadow-[inset_0_4px_6px_rgba(255,255,255,0.2)]"></div>
-          <div className="absolute bottom-0 right-1 w-[75%] h-[80%] bg-[#EE8524] rounded-t-[14px] transform -skew-y-[20deg] origin-bottom-right z-10 border-l border-[#FFA34D] flex flex-col justify-end overflow-hidden pb-1">
+          <div className="w-[85%] h-[40%] bg-[#DB7211] rounded-t-[10px] transform skew-y-15 origin-bottom-left -ml-2 -mb-1 shadow-[inset_0_4px_6px_rgba(255,255,255,0.2)]"></div>
+          <div className="absolute bottom-0 right-1 w-[75%] h-[80%] bg-[#EE8524] rounded-t-[14px] transform -skew-y-20 origin-bottom-right z-10 border-l border-[#FFA34D] flex flex-col justify-end overflow-hidden pb-1">
             <div className="w-full h-1/2 bg-[#ff9d44]"></div>
           </div>
           <div className="absolute bottom-0 right-1 w-[75%] h-[30%] bg-[#CF6200] z-20 rounded-bl-[4px] rounded-br-[10px]"></div>
@@ -146,7 +146,7 @@ function CoursesComponent() {
                 }}
                 slidesPerView="auto"
                 spaceBetween={18}
-                className="w-full !overflow-visible px-2 py-1 -mx-2 -my-1"
+                className="w-full overflow-visible! px-2 py-1 -mx-2 -my-1"
               >
                 {category.courses.map((course) => (
                   <SwiperSlide key={course.id} style={{ width: "220px" }}>
