@@ -1,5 +1,6 @@
 import { Zap } from "lucide-preact";
 import { heroNavItems } from "../data/navigation";
+import { setAuthModalOpen } from "@/store/uiStore";
 
 export function Hero() {
   return (
@@ -137,12 +138,17 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 justify-center w-full max-w-[650px] z-10 relative">
-            <button className="flex-1 py-[16px] px-8 bg-[#22C55E] text-white text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#16A34A] hover:shadow-[0_2px_0_0_#16A34A] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
-              I'm a learner
+            <button
+              onClick={() => {
+                setAuthModalOpen(true);
+              }}
+              className="flex-1 py-[16px] px-8 bg-[#22C55E] text-white text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#16A34A] hover:shadow-[0_2px_0_0_#16A34A] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer"
+            >
+              Start Learning
             </button>
-            <button className="flex-1 py-[16px] px-8 bg-white border-2 border-gray-100 text-[#1c1d1f] text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
+            {/* <button className="flex-1 py-[16px] px-8 bg-white border-2 border-gray-100 text-[#1c1d1f] text-[18px] font-bold rounded-full transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
               I'm a parent or teacher
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
