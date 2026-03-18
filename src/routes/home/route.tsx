@@ -123,7 +123,7 @@ const PremiumCard = () => (
         </div>
         <div className="flex-1">
           <h3 className="text-[13px] font-bold text-gray-900 leading-tight mb-0.5">
-            Unlock all learning with Premium
+            Everything is free!
           </h3>
           <p className="text-xs text-gray-600">
             This is an open-source project, so no premium is required.

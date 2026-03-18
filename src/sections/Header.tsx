@@ -7,7 +7,15 @@ interface HeaderProps {
 
 import { useState, useRef, useEffect } from "preact/hooks";
 import { logout } from "@/store/authStore";
-import { Home, BookOpen, Zap, Menu } from "lucide-preact";
+import {
+  Home,
+  BookOpen,
+  Zap,
+  Menu,
+  Star,
+  Github,
+  GithubIcon,
+} from "lucide-preact";
 
 export function Header({
   isScrolled,
@@ -50,7 +58,8 @@ export function Header({
                   className: "text-gray-900 border-b-[3px] border-gray-900",
                 }}
                 inactiveProps={{
-                  className: "hover:text-gray-900 border-b-[3px] border-transparent",
+                  className:
+                    "hover:text-gray-900 border-b-[3px] border-transparent",
                 }}
               >
                 <Home size={18} strokeWidth={2.5} />
@@ -63,7 +72,8 @@ export function Header({
                   className: "text-gray-900 border-b-[3px] border-gray-900",
                 }}
                 inactiveProps={{
-                  className: "hover:text-gray-900 border-b-[3px] border-transparent",
+                  className:
+                    "hover:text-gray-900 border-b-[3px] border-transparent",
                 }}
               >
                 <BookOpen size={18} strokeWidth={2.5} />
@@ -76,14 +86,17 @@ export function Header({
         <div className="flex items-center gap-3">
           {isAuthenticated ? (
             <>
-              <button
-                className="hidden md:block px-5 py-2 bg-white border border-gray-200 text-gray-900 rounded-full font-bold text-sm transition-all cursor-pointer disabled:opacity-50"
-                disabled
-              >
-                Go Premium, Haha!
+              <button className="px-5 flex items-center gap-2 py-2 bg-white border-2 border-gray-100 text-[#1c1d1f] font-bold text-sm rounded-full transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer group">
+                <Github size={16} strokeWidth={2.5} />
+                Star 25
+                <Star
+                  size={16}
+                  fill="currentColor"
+                  className="text-yellow-500 group-hover:animate-spin"
+                />
               </button>
 
-              <div className="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1 bg-white shadow-xs cursor-pointer">
+              <div className="px-5 flex items-center gap-2 py-2 bg-white border-2 border-gray-100 text-[#1c1d1f] font-bold text-sm rounded-full transition-all shadow-[0_4px_0_0_#D1D5DB] hover:shadow-[0_2px_0_0_#D1D5DB] hover:translate-y-[2px] active:shadow-none active:translate-y-[4px] cursor-pointer">
                 <span className="font-bold text-gray-700 text-sm">0</span>
                 <Zap size={16} fill="currentColor" className="text-gray-700" />
               </div>
