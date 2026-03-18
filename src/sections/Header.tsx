@@ -7,15 +7,7 @@ interface HeaderProps {
 
 import { useState, useRef, useEffect } from "preact/hooks";
 import { logout } from "@/store/authStore";
-import {
-  Home,
-  BookOpen,
-  Zap,
-  Menu,
-  Star,
-  Github,
-  GithubIcon,
-} from "lucide-preact";
+import { Home, BookOpen, Zap, Menu, Star, Github } from "lucide-preact";
 
 export function Header({
   isScrolled,
