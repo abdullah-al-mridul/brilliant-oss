@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SettingsRouteRouteImport } from './routes/settings/route'
 import { Route as HomeRouteRouteImport } from './routes/home/route'
 import { Route as CoursesRouteRouteImport } from './routes/courses/route'
 import { Route as IndexRouteRouteImport } from './routes/index/route'
 
+const SettingsRouteRoute = SettingsRouteRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HomeRouteRoute = HomeRouteRouteImport.update({
   id: '/home',
   path: '/home',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRouteRoute
   '/courses': typeof CoursesRouteRoute
   '/home': typeof HomeRouteRoute
+  '/settings': typeof SettingsRouteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRouteRoute
   '/courses': typeof CoursesRouteRoute
   '/home': typeof HomeRouteRoute
+  '/settings': typeof SettingsRouteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRouteRoute
   '/courses': typeof CoursesRouteRoute
   '/home': typeof HomeRouteRoute
+  '/settings': typeof SettingsRouteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/courses' | '/home'
+  fullPaths: '/' | '/courses' | '/home' | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/courses' | '/home'
-  id: '__root__' | '/' | '/courses' | '/home'
+  to: '/' | '/courses' | '/home' | '/settings'
+  id: '__root__' | '/' | '/courses' | '/home' | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRouteRoute: typeof IndexRouteRoute
   CoursesRouteRoute: typeof CoursesRouteRoute
   HomeRouteRoute: typeof HomeRouteRoute
+  SettingsRouteRoute: typeof SettingsRouteRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRouteRoute: IndexRouteRoute,
   CoursesRouteRoute: CoursesRouteRoute,
   HomeRouteRoute: HomeRouteRoute,
+  SettingsRouteRoute: SettingsRouteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

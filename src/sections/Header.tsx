@@ -100,9 +100,13 @@ export function Header({
                     {/* Popover Arrow */}
                     <div className="absolute -top-1.5 right-3.5 w-3 h-3 bg-white border-t border-l border-gray-100 rotate-45" />
 
-                    <button className="w-full text-left px-5 py-3 text-[15px] font-medium text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer border-none">
+                    <Link
+                      to="/settings"
+                      onClick={() => setIsDropdownOpen(false)}
+                      className="w-full block text-left px-5 py-3 text-[15px] font-medium text-gray-800 hover:bg-gray-50 transition-colors cursor-pointer border-none"
+                    >
                       Settings
-                    </button>
+                    </Link>
 
                     <div className="h-px bg-gray-100 mx-0" />
 
