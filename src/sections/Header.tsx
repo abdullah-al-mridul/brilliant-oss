@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 interface HeaderProps {
   isScrolled: boolean;
   onSignInClick: () => void;
@@ -42,14 +43,32 @@ export function Header({
 
           {isAuthenticated && (
             <div className="hidden md:flex items-center gap-8 text-[15px] font-bold text-gray-400">
-              <button className="flex items-center gap-2 text-gray-900 border-b-2 border-gray-900 pb-1 cursor-pointer">
+              <Link
+                to="/home"
+                className="flex items-center gap-2 pb-1 transition-colors cursor-pointer"
+                activeProps={{
+                  className: "text-gray-900 border-b-[3px] border-gray-900",
+                }}
+                inactiveProps={{
+                  className: "hover:text-gray-900 border-b-[3px] border-transparent",
+                }}
+              >
                 <Home size={18} strokeWidth={2.5} />
                 <span>Home</span>
-              </button>
-              <button className="flex items-center gap-2 hover:text-gray-900 transition-colors cursor-pointer">
+              </Link>
+              <Link
+                to="/courses"
+                className="flex items-center gap-2 pb-1 transition-colors cursor-pointer"
+                activeProps={{
+                  className: "text-gray-900 border-b-[3px] border-gray-900",
+                }}
+                inactiveProps={{
+                  className: "hover:text-gray-900 border-b-[3px] border-transparent",
+                }}
+              >
                 <BookOpen size={18} strokeWidth={2.5} />
                 <span>Courses</span>
-              </button>
+              </Link>
             </div>
           )}
         </div>
