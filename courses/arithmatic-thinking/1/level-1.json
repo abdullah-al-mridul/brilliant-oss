@@ -1,0 +1,92 @@
+{
+  "levelId": "arithmetic_thinking_level_1",
+  "title": "Introduction to Arithmetic Thinking",
+  "description": "Learn the basics of combining numbers.",
+  "slides": [
+    {
+      "slideId": "slide_1",
+      "type": "content",
+      "blocks": [
+        {
+          "type": "markdown",
+          "content": "### What is Arithmetic Thinking?\nMathematics isn't just about memorizing rules. It's about seeing the patterns hidden in numbers. Let's start with basic addition."
+        },
+        {
+          "type": "animated_svg",
+          "concept": "combining_blocks",
+          "initialState": {
+            "left": 3,
+            "right": 2
+          }
+        }
+      ]
+    },
+    {
+      "slideId": "slide_2",
+      "type": "interactive",
+      "blocks": [
+        {
+          "type": "markdown",
+          "content": "If you have **3** blocks and add **5** more, how many do you have?"
+        },
+        {
+          "type": "math_display",
+          "equation": "3 + 5 = ?"
+        },
+        {
+          "type": "multiple_choice",
+          "options": [
+            {
+              "id": "opt_a",
+              "label": "7"
+            },
+            {
+              "id": "opt_b",
+              "label": "8",
+              "isCorrect": true
+            },
+            {
+              "id": "opt_c",
+              "label": "9"
+            }
+          ],
+          "successMessage": "Spot on! 3 + 5 equals 8.",
+          "errorMessage": "Not quite. Try counting them together."
+        }
+      ]
+    },
+    {
+      "slideId": "slide_3",
+      "type": "interactive",
+      "blocks": [
+        {
+          "type": "markdown",
+          "content": "Drag the correct symbol to make the equation true:"
+        },
+        {
+          "type": "drag_and_drop_equation",
+          "equationTemplate": "12 [DROP_ZONE_1] 4 = 8",
+          "availableBlocks": [
+            {
+              "id": "plus",
+              "label": "+"
+            },
+            {
+              "id": "minus",
+              "label": "-"
+            },
+            {
+              "id": "multiply",
+              "label": "×"
+            }
+          ],
+          "correctAnswer": {
+            "DROP_ZONE_1": "minus"
+          },
+          "successMessage": "Excellent! 12 minus 4 is indeed 8.",
+          "errorMessage": "Check your math again!"
+        }
+      ]
+    }
+  ]
+}
