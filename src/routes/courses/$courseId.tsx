@@ -16,11 +16,25 @@ const COURSE_DATA = {
 };
 
 const PATH_NODES = [
+  // Section 1
   { id: 1, title: "Visualize Fractions", type: "section_header", isActive: true },
   { id: 2, title: "Combining Parts", status: "completed" },
   { id: 3, title: "Splitting Parts", status: "completed" },
   { id: 4, title: "Splitting and Combining", status: "active" },
   { id: 5, title: "Equal Parts", status: "locked" },
+  { id: 6, title: "Fraction Equivalence", status: "locked" },
+  
+  // Section 2
+  { id: 7, title: "Advanced Operations", type: "section_header", isActive: false },
+  { id: 8, title: "Multiplying Fractions", status: "locked" },
+  { id: 9, title: "Dividing Fractions", status: "locked" },
+  { id: 10, title: "Mixed Numbers", status: "locked" },
+  { id: 11, title: "Complex Denominators", status: "locked" },
+  
+  // Section 3
+  { id: 12, title: "Mastery Challenge", type: "section_header", isActive: false },
+  { id: 13, title: "Word Problems", status: "locked" },
+  { id: 14, title: "Final Assessment", status: "locked" },
 ];
 
 function CourseDetailComponent() {
@@ -132,16 +146,26 @@ function CourseDetailComponent() {
         </main>
       </div>
 
-      {/* Floating Action Menu (Sticky Bottom) - Matches active task */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[420px] bg-white rounded-3xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-slate-100 z-50 animate-in slide-in-from-bottom-8 duration-500">
-        <h4 className="text-[17px] font-bold text-center text-slate-900 mb-4">
-          Splitting and Combining
-        </h4>
-        <a href="/courses/arithmatic-thinking/1">
-          <button className="w-full bg-[#4669F2] hover:bg-[#3D5DE4] text-white font-bold text-[17px] py-[14px] rounded-[16px] shadow-[0_4px_0_#2B4CD2] active:shadow-none active:translate-y-1 transition-all">
-            Start
-          </button>
-        </a>
+      {/* Floating Action Menu (Aligned to Right Column) */}
+      <div className="fixed bottom-6 left-0 right-0 w-full z-50 pointer-events-none">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-[380px_1fr] gap-8 md:gap-16">
+          {/* Empty left column to push the menu to the right */}
+          <div className="hidden md:block"></div>
+          
+          {/* Menu perfectly centered in the right column */}
+          <div className="flex justify-center pointer-events-auto">
+            <div className="w-[90%] max-w-[420px] bg-white rounded-3xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-slate-100 animate-in slide-in-from-bottom-8 duration-500">
+              <h4 className="text-[17px] font-bold text-center text-slate-900 mb-4">
+                Splitting and Combining
+              </h4>
+              <a href="/courses/arithmatic-thinking/1">
+                <button className="w-full bg-[#4669F2] hover:bg-[#3D5DE4] text-white font-bold text-[17px] py-[14px] rounded-[16px] shadow-[0_4px_0_#2B4CD2] active:shadow-none active:translate-y-1 transition-all">
+                  Start
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
