@@ -14,6 +14,8 @@ import { Route as HomeRouteRouteImport } from './routes/home/route'
 import { Route as IndexRouteRouteImport } from './routes/index/route'
 import { Route as CoursesIndexRouteImport } from './routes/courses/index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses/$courseId'
+import { Route as CoursesCourseIdIndexRouteImport } from './routes/courses/$courseId/index'
+import { Route as CoursesCourseIdLevelIdRouteImport } from './routes/courses/$courseId/$levelId'
 
 const SettingsRouteRoute = SettingsRouteRouteImport.update({
   id: '/settings',
@@ -40,34 +42,62 @@ const CoursesCourseIdRoute = CoursesCourseIdRouteImport.update({
   path: '/courses/$courseId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoursesCourseIdIndexRoute = CoursesCourseIdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CoursesCourseIdRoute,
+} as any)
+const CoursesCourseIdLevelIdRoute = CoursesCourseIdLevelIdRouteImport.update({
+  id: '/$levelId',
+  path: '/$levelId',
+  getParentRoute: () => CoursesCourseIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRouteRoute
   '/home': typeof HomeRouteRoute
   '/settings': typeof SettingsRouteRoute
-  '/courses/$courseId': typeof CoursesCourseIdRoute
+  '/courses/$courseId': typeof CoursesCourseIdRouteWithChildren
   '/courses/': typeof CoursesIndexRoute
+  '/courses/$courseId/$levelId': typeof CoursesCourseIdLevelIdRoute
+  '/courses/$courseId/': typeof CoursesCourseIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRouteRoute
   '/home': typeof HomeRouteRoute
   '/settings': typeof SettingsRouteRoute
-  '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
+  '/courses/$courseId/$levelId': typeof CoursesCourseIdLevelIdRoute
+  '/courses/$courseId': typeof CoursesCourseIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRouteRoute
   '/home': typeof HomeRouteRoute
   '/settings': typeof SettingsRouteRoute
-  '/courses/$courseId': typeof CoursesCourseIdRoute
+  '/courses/$courseId': typeof CoursesCourseIdRouteWithChildren
   '/courses/': typeof CoursesIndexRoute
+  '/courses/$courseId/$levelId': typeof CoursesCourseIdLevelIdRoute
+  '/courses/$courseId/': typeof CoursesCourseIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home' | '/settings' | '/courses/$courseId' | '/courses/'
+  fullPaths:
+    | '/'
+    | '/home'
+    | '/settings'
+    | '/courses/$courseId'
+    | '/courses/'
+    | '/courses/$courseId/$levelId'
+    | '/courses/$courseId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home' | '/settings' | '/courses/$courseId' | '/courses'
+  to:
+    | '/'
+    | '/home'
+    | '/settings'
+    | '/courses'
+    | '/courses/$courseId/$levelId'
+    | '/courses/$courseId'
   id:
     | '__root__'
     | '/'
@@ -75,13 +105,15 @@ export interface FileRouteTypes {
     | '/settings'
     | '/courses/$courseId'
     | '/courses/'
+    | '/courses/$courseId/$levelId'
+    | '/courses/$courseId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRouteRoute: typeof IndexRouteRoute
   HomeRouteRoute: typeof HomeRouteRoute
   SettingsRouteRoute: typeof SettingsRouteRoute
-  CoursesCourseIdRoute: typeof CoursesCourseIdRoute
+  CoursesCourseIdRoute: typeof CoursesCourseIdRouteWithChildren
   CoursesIndexRoute: typeof CoursesIndexRoute
 }
 
@@ -122,14 +154,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoursesCourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/courses/$courseId/': {
+      id: '/courses/$courseId/'
+      path: '/'
+      fullPath: '/courses/$courseId/'
+      preLoaderRoute: typeof CoursesCourseIdIndexRouteImport
+      parentRoute: typeof CoursesCourseIdRoute
+    }
+    '/courses/$courseId/$levelId': {
+      id: '/courses/$courseId/$levelId'
+      path: '/$levelId'
+      fullPath: '/courses/$courseId/$levelId'
+      preLoaderRoute: typeof CoursesCourseIdLevelIdRouteImport
+      parentRoute: typeof CoursesCourseIdRoute
+    }
   }
 }
+
+interface CoursesCourseIdRouteChildren {
+  CoursesCourseIdLevelIdRoute: typeof CoursesCourseIdLevelIdRoute
+  CoursesCourseIdIndexRoute: typeof CoursesCourseIdIndexRoute
+}
+
+const CoursesCourseIdRouteChildren: CoursesCourseIdRouteChildren = {
+  CoursesCourseIdLevelIdRoute: CoursesCourseIdLevelIdRoute,
+  CoursesCourseIdIndexRoute: CoursesCourseIdIndexRoute,
+}
+
+const CoursesCourseIdRouteWithChildren = CoursesCourseIdRoute._addFileChildren(
+  CoursesCourseIdRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRouteRoute: IndexRouteRoute,
   HomeRouteRoute: HomeRouteRoute,
   SettingsRouteRoute: SettingsRouteRoute,
-  CoursesCourseIdRoute: CoursesCourseIdRoute,
+  CoursesCourseIdRoute: CoursesCourseIdRouteWithChildren,
   CoursesIndexRoute: CoursesIndexRoute,
 }
 export const routeTree = rootRouteImport
