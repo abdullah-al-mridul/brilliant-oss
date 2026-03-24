@@ -17,6 +17,8 @@ export const Route = createRootRoute({
   component: RootComponent,
 });
 
+// src/courses/arithmatic-thinking/1/level-1.json
+
 function RootComponent() {
   const { isAuthModalOpen } = useStore(uiStore);
   const { status } = useStore(authStore);
